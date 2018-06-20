@@ -1,13 +1,13 @@
-//var baseUrl ="http://shumi-gateway.vicp.io:24398/";
+﻿//var baseUrl ="http://shumi-gateway.vicp.io:24398/";
 //var baseUrl ="http://192.168.10.157:8091/";
 //var baseUrl ="http://192.168.10.215:8090/";
 
-//    var baseUrl = "http://118.31.7.200:8091/"//阿里云
+    var baseUrl = "http://118.31.7.200:8091/"//阿里云
 //var baseUrl = "http://118.31.7.200:8090/"//阿里云
 //var baseUrl ="http://192.168.10.122:809/bettle/api/";
 //var baseUrl ="http://192.168.43.48:8090/";//
 //var baseUrl ="http://192.168.43.48:8090/";
-var baseUrl ="http://192.168.10.167:8091/";//老王
+//var baseUrl ="http://192.168.10.167:8091/";//老王
 //var baseUrl = "http://192.168.1.3:8888/";//me
 
 var loginUser = baseUrl +'rbac/user/login',                //登录
