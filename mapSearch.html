@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<title>CanvasLayer</title>
+
+<link rel="stylesheet" href="common/css/jquery-weui.min.css">
+<link rel="stylesheet" href="common/lib/weui.min.css">
+<link rel="stylesheet" href="common/css/main.css">
+
+<script src="common/lib/jquery-2.1.4.js"></script>
+<script src="common/js/myCommon.js" type="text/javascript" charset="utf-8"></script>
+<script src="common/js/jquery-weui.js"></script>
+<script src="common/js/common.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+body, html {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	
+	
+	
+
+#searchBox {
+	position: relative;
+	height: 44px;
+	width: 100%;
+	padding: ;
+	text-align: center;
+	background: rgba(62, 147, 233, 1);
+	
+}
+.col {float: left;}
+
+#main {width: 100%;height: 44px;background: rgb(62, 147, 233);}
+
+#main-wrap {margin: 7px 44px 7px 44px; }
+
+#left {width: 44px;height: 44px;margin-left: -100%; line-height: 44px; text-align: center; color: #fff;}
+
+#right {width: 44px;height: 44px;margin-left: -44px; line-height: 44px; text-align: center; color: #fff;}
+.weui-icon-search{
+	color:#fff;
+}
+#container input{
+	width: 100%;
+	background: #fff;
+	height: 30px;
+	outline: none;
+	border: none;
+	border-radius: 4px;
+}
+#searchContent{
+	margin-top: 44px;
+}
+#contentList{
+	background: #fff;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 44px;
+	display: none;
+	z-index: 1;
+}
+ #contentList li {
+    display: block;
+    border: 0;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 29px;
+    height: 29px;
+    position: relative;
+    text-align: left;
+    color: #333;
+    padding-left: 12px;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 16px;
+	
+}
+#searchContent>ul{
+	background: #fff;
+	width: 100%;
+}
+#searchContent>ul li{
+	display: block;
+    border: 0;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 29px;
+    height: 29px;
+    position: relative;
+    text-align: center;
+    color: #333;
+    padding-left: 12px;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 16px;
+    
+    
+}
+</style>
+</head>
+<body>
+	<div id="container">
+	    <div id="main" class="col">
+	        <div id="main-wrap">
+	            <input type="text"/>
+	        </div>
+	    </div>
+	    <div id="left" class="col">
+	    	<i class="nb-icon">&#xe61d;</i>
+	    </div>
+	    <div id="right" class="col">
+	     <i class="weui-icon-search"></i>
+	    </div>
+	</div>
+	<ul id="contentList">
+			<li>七加村</li>
+			<li>七加村</li>
+			<li>七加村</li>
+	</ul>
+	
+	<div id="searchContent" style="position: relative;">
+		<h2>历史搜索</h2>
+		<ul>
+			
+		</ul>
+		<img style="position: absolute;left: 50%; top: 50%; margin-left:-100px; margin-top: -100px;" src="./images/box-empty.svg"/>
+
+		
+	</div>
+
+    
+    
+ 
+   
+     <div class="weui-tabbar nb-tabbar" id="levaNowPage">
+        <a href="menu.html" class="weui-tabbar__item">
+            <!-- <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span> -->
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe63d;</i>
+                <!-- <img src="./images/icon_nav_button.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">考核管理</p>
+        </a>
+        <!--<a href="ranking.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe61c;</i>
+                 <img src="./images/icon_nav_msg.png" alt=""> 
+            </div>
+            <p class="weui-tabbar__label">考核排名</p>
+        </a>-->
+        <a href="map.html" class="weui-tabbar__item weui-bar__item--on">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe613;</i>
+                <!-- <img src="./images/icon_nav_article.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">gis地图</p>
+        </a>
+        <a href="user.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe635;</i>
+                <!-- <img src="./images/icon_nav_cell.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">我的</p>
+        </a>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+	$("#searchContent").css({height:$(document).height()-44-50})
+	
+	
+
+
+
+	
+	var oldSearchData = localStorage.oldSearchData ? JSON.parse(localStorage.oldSearchData) : [];
+
+	if(oldSearchData && oldSearchData.length>0){
+		var oldSearchDataObj = oldSearchData
+		var html = ""
+		for (var i = 0;i < oldSearchDataObj.length; i++) {
+			item = JSON.parse(oldSearchDataObj[i])
+			html += "<li searcData='"+JSON.stringify(oldSearchDataObj[i])+"'>"+item.compostingName+"</li>"
+		}
+		
+		
+		
+		html += '<a href="javascript:;" class="clearRecord weui-btn weui-btn_plain-default weui-btn_plain-disabled">清空历史</a>'
+		$('#searchContent img').hide();
+		$('#searchContent ul').html(html)
+		$("#searchContent ul .clearRecord").click(function () {
+			localStorage.oldSearchData = "";
+			$("#searchContent").html("")
+		})
+		
+	}
+
+
+	function plusReady () {
+		
+		//获取窗口的信息
+		var ws = plus.webview.currentWebview()
+//		console.log(ws.a)
+		
+		
+		$('#main-wrap input').on("input",function () {
+		var searchVal = $(this).val();
+	
+		$.ajax({
+			url:selectPositionByName,
+			headers:{
+				token:localStorage.token
+			},
+			type:"post",
+			data:{compostingName:searchVal},
+			success:function (res) {
+				if(res.code == 200){
+					res = res.data;
+					var html = "";
+					for (var i = 0;i < res.length; i++) {
+						html += "<li searcData='"+JSON.stringify(res[i])+"'>"+res[i].compostingName+"</li>"
+					}
+
+					$("#contentList").html(html).show();
+					
+					
+				}else{
+					plus.nativeUI.toast(res.msg)
+				}
+			}
+			
+		})
+		
+	})
+	
+	
+	var isSeach = 1
+	$("#contentList").on("click","li",function(e){
+		
+		var searchData = $(this).attr("searcData");
+		var searchDataObj = JSON.parse(searchData)
+		var isAllTrue = true;
+	
+		if(oldSearchData.length>0){
+			
+			for (var i = 0; i < oldSearchData.length; i++) {
+			
+				if(oldSearchData[i] == searchData){
+					isAllTrue = false;
+					break;
+				}
+			}
+		}
+	
+		if(isAllTrue){
+			//如果没有相同的数据储存
+			var oldSearchDataObj = oldSearchData || []
+			oldSearchDataObj.unshift(searchData);
+			localStorage.oldSearchData = JSON.stringify(oldSearchDataObj);
+		}
+//		
+		window.location.href = "map.html?mapY="+searchDataObj.mapY+"&mapX="+searchDataObj.mapX + '&isSeach='+isSeach
+		
+		
+	})
+	$("#searchContent ul").on("click","li",function(e){
+		var searchData = $(this).attr("searcData");
+		var searchDataObj = JSON.parse(searchData)
+		var obj = eval('('+searchDataObj+')')
+			
+//		
+		window.location.href = "map.html?mapY="+obj.mapY+"&mapX="+obj.mapX+"&isSeach="+isSeach
+		
+		
+	})
+
+	
+		
+	
+		
+	}
+	
+	if(window.plus){
+		plusReady()
+	}else{
+		document.addEventListener("plusready",plusReady,false)
+	}
+	
+   
+    
+</script>
+<script type="text/javascript">
+	
+	$("#levaNowPage").css({top:($(document.body).height()-50)+"px"})
+	
+</script>

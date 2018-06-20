@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>智慧农办</title>
+		<link rel="stylesheet" href="common/css/jquery-weui.min.css">
+		<link rel="stylesheet" href="common/lib/weui.min.css">
+		<link rel="stylesheet" href="common/css/main.css">
+		<style type="text/css">
+			.weui-grids {
+				margin-top: 3px;
+				background: #fff;
+			}
+			
+			.modeal-box {
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			.modeal-box>li {
+				width: 25%;
+				float: left;
+				text-align: center;
+				color: #000;
+			}
+			
+			.modeal-box>li a {
+				display: block;
+				width: 100%;
+			}
+			
+			.modeal-box>li a img {
+				width: 35%;
+			}
+			
+			.modeal {
+				width: 100%;
+				padding: 8px 0px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			.modeal h4 {
+				display: block;
+				width: 25%;
+				text-align: center;
+				color: #CCCCCC;
+				margin-bottom: 10px;
+				font-size: 14px !important;
+			}
+			
+			.modeal-box>li a {
+				font-size: 10px !important;
+			}
+		</style>
+	</head>
+
+	<body ontouchstart class="nb-body">
+		<div class="swiper-container">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide">
+					<img src="common/images/swiper-1.jpg" />
+				</div>
+				<div class="swiper-slide">
+					<img src="common/images/swiper-2.jpg" />
+				</div>
+				<div class="swiper-slide">
+					<img src="common/images/swiper-3.jpg" />
+				</div>
+			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+		<div class="weui-grids">
+			 <div class="modeal">
+				<h4>堆肥房管理</h2>
+					<ul class="modeal-box">
+						<li>
+								<a href="fertilizerHouse.html">
+								<img src="images/icon8.png"/>
+									<p>考核抽查</p>
+								</a>
+							</li>
+							<li>
+								<a href="dffdb.html">
+									<img src="images/icon5.png"/>
+									<p>考核督办</p>
+								</a>
+							</li>
+							<li>
+								<a href="dffResout.html">
+									<img src="images/icon6.png"/>
+									<p>考核结果</p>
+								</a>
+							</li>
+							<li>
+								<a href="rankingDff.html">
+									<img src="images/icon7.png"/>
+									<p>考核排行</p>
+								</a>
+							</li>
+					</ul>
+			</div> 
+    	 <div class="modeal">
+				<h4>考核管理</h2>
+					<ul class="modeal-box">
+						<li>
+								<a href="scavengingPhoto.html">
+								<img src="images/icon8.png"/>
+									<p>扫码拍照</p>
+								</a>
+							</li>
+							<li>
+								<a href="imglist.html">
+									<img src="images/icon5.png"/>
+									<p>查看图片</p>
+								</a>
+							</li>
+							<li>
+								<a href="dffResout.html">
+									<img src="images/icon6.png"/>
+									<p>考核结果</p>
+								</a>
+							</li>
+							<li>
+								<a href="rankingDff.html">
+									<img src="images/icon7.png"/>
+									<p>考核排行</p>
+								</a>
+							</li>
+					</ul>
+			</div> 
+
+    	
+        <!--<ul id="powerDTOS">
+            <li class="nb-item-list nb-item-color-1">
+                <a href="inspection.html">
+                    <i class="nb-icon">&#xe67f;</i>
+                    <p>考核管理</p>
+                </a>
+            </li>
+            <li class="nb-item-list nb-item-color-2">
+                <a href="khdb.html">
+                    <i class="nb-icon">&#xe6a8;</i>
+                    <p>考核督办</p>
+                    <span class="weui-badge" style="position: absolute;top:1em;right: 1em;">8</span>
+                </a>
+            </li>
+            <li class="nb-item-list nb-item-color-3">
+                <a href="resoutRest.html">
+                    <i class="nb-icon">&#xe607;</i>
+                    <p>考核结果</p>
+                </a>
+            </li>
+            <li class="nb-item-list nb-item-color-4">
+                <a href="javascript:;">
+                    <i class="nb-icon">&#xe609;</i>
+                    <p>挂牌评级</p>
+                </a>
+            </li>
+            <li class="nb-item-list nb-item-color-5">
+                <a href="javascript:;">
+                    <i class="nb-icon">&#xe60b;</i>
+                    <p>设备管理</p>
+                </a>
+            </li>
+             <li class="nb-item-list nb-item-color-5">
+                <a href="fertilizerHouse.html">
+                    <i class="nb-icon">&#xe60b;</i>
+                    <p>堆肥管理</p>
+                </a>
+            </li>
+             <li class="nb-item-list nb-item-color-5">
+                <a href="dffdb.html">
+                    <i class="nb-icon">&#xe60b;</i>
+                    <p>堆肥房督办</p>
+                </a>
+            </li>
+             <li class="nb-item-list nb-item-color-5">
+                <a href="rankingDff.html">
+                    <i class="nb-icon">&#xe60b;</i>
+                    <p>堆肥房结果</p>
+                </a>
+            </li>
+        </ul>-->
+    </div>
+
+    <!--<div class="nb-title nav-margin">
+        最新消息
+    </div>-->
+    
+
+
+    <div class="nav-footer-position weui-tabbar nb-tabbar">
+        <a href="menu.html" class="weui-tabbar__item weui-bar__item--on">
+            <!-- <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span> -->
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe63d;</i>
+                <!-- <img src="./images/icon_nav_button.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">考核管理</p>
+        </a>
+        <!--<a href="ranking.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe61c;</i>
+                 <img src="./images/icon_nav_msg.png" alt=""> 
+            </div>
+            <p class="weui-tabbar__label">考核排名</p>
+        </a>-->
+        <a  target="_blank" href="map.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe613;</i>
+                <!-- <img src="./images/icon_nav_article.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">gis地图</p>
+        </a>
+        <a href="user.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe635;</i>
+                <!-- <img src="./images/icon_nav_cell.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">我的</p>
+        </a>
+    </div>
+    </div>
+</body>
+<script src="common/lib/jquery-2.1.4.js"></script>
+<script src="common/lib/fastclick.js"></script>
+<script src="common/js/jquery-weui.js"></script>
+<script src="common/js/swiper.js"></script>
+<script src="common/js/qs.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/mui.js"></script>
+<script src="js/common.js"></script>
+<script>
+//	var powerDTOS = JSON.parse(localStorage.powerDTOS);
+//	
+//	var html = "";
+//	for (var i = 0; i<powerDTOS.length;i++) {
+//		
+//		 html += '<li class="nb-item-list nb-item-color-'+(i+1)+'">'
+//              +'<a href="'+powerDTOS[i].path+'">'
+//                  +'<i class="nb-icon">'+powerDTOS[i].icon+'</i>'
+//                  +'<p>'+powerDTOS[i].powerName+'</p>'
+//            	 +'</a>'
+//          +'</li>';
+//	}
+//	$("#powerDTOS").html(html)
+
+//	
+
+var data = JSON.parse(localStorage.powerDTOS)
+
+
+// 第一层
+var first = [];
+for(var i = 0; i < data.length; i++){
+	if(data[i].pid == 0){
+		first.push(data[i])
+	}
+}
+//去掉最后一项 不展示
+if(first[first.length-1].name == "系统管理") first.pop();
+
+for(var i = 0; i < data.length; i ++){
+
+	for(var k = 0; k < first.length; k++){
+		if(first[k].id == data[i].pid){
+			if(!first[k].second){
+				first[k].second = []
+			}
+			first[k].second.push(data[i]);
+			break;
+		}
+	}
+}
+
+//var html = "";
+//	for (var i = 0; i < first.length; i++) {
+//		html += '<div class="modeal">'
+//			+ '<h4>'+first[i].name+'</h2>'
+//			+ '<ul class="modeal-box">';
+//		for (var k = 0; k < first[i].second.length; k++) {
+//			var item = first[i].second[k]
+//
+//			html += '<li>'
+//				+ '<a href="'+item.path+'">'
+//				+ '<img src="images/' + item.icon + '" />'
+//				+ '<p>'+ item.name +'</p>'
+//				+ '</a>'
+//				+ '</li>';
+//
+//		}
+//		
+//
+//		html += '</ul>'
+//			+ '</div >'
+//		
+//	}
+//		
+//
+//$(".weui-grids").html(html)
+//根据数据name最后一个字节 1垃圾桶  2堆肥房 
+
+    $(".swiper-container").swiper({
+        loop: true,
+        autoplay: 3000
+    });
+    if(localStorage.bhs!=undefined && localStorage.bhs!=null){
+    	localStorage.removeItem('bhs')
+    };
+    
+   
+   
+
+</script>
+<script src="html5plus://ready"></script>
+<script type="text/javascript">
+	// 获取当前页面信息
+	var menu = plus.webview.currentWebview();
+	var isSignOut = false;
+	plus.key.addEventListener("backbutton",function () {
+		if (isSignOut) {
+			menu.close()
+			return false;
+		}
+		plus.nativeUI.toast("连续点击两次退出程序")
+		isSignOut = true;
+		
+		setTimeout(function () {
+			isSignOut = false
+		},1e3);
+		
+		
+	})
+</script>
+</html>

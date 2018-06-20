@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>考核排名</title>
+    <link rel="stylesheet" href="common/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="common/lib/weui.min.css">
+    <link rel="stylesheet" href="common/css/main.css">
+    <style type="text/css">
+    	#footer{
+    		position: fixed;
+    		bottom: 0;
+    		left: 0;
+    	}
+    	.nb-item-wrapper{
+    		margin-bottom:50px;
+    	}
+    </style>
+</head>
+
+<body style="background:#f0f0f0">
+    <div class="weui-search-bar" id="searchBar">
+        <form class="weui-search-bar__form" action="#">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                <i class="weui-icon-search"></i>
+                <span>请输入村名或镇名</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+    <ul class="my-pagination-ul">
+        <li>
+            <a href="ranking.html">
+                <span class="nb-icon">&#xe605;</span>住户排名</a>
+        </li>
+        <li class="active">
+            <a href="rankMark.html">
+                <span class="nb-icon">&#xe60a;</span>村排名</a>
+        </li>
+        <li>
+            <a href="townRank.html">
+                <span class="nb-icon">&#xe64f;</span>镇排名</a>
+        </li>
+        
+    </ul>
+    <div class="nb-item-wrapper">
+        <div class="nb-search-ranking">
+            <h1 class="ng-fl">排名方式</h1>
+            <ul class="ng-fl sorce-num">
+                <li>
+                    <b>月总分</b>
+                    <!-- <span>
+                        <em  class="nb-icon up">&#xe62c;</em>
+                        <em  class="nb-icon down">&#xe62d;</em>
+                    </span> -->
+                </li>
+                <li>
+                    <b>季总分</b>
+                    <!-- <span>
+                        <em  class="nb-icon up">&#xe62c;</em>
+                        <em  class="nb-icon down">&#xe62d;</em>
+                    </span> -->
+                </li>
+                <li>
+                    <b>年总分</b>
+                    <!-- <span>
+                        <em  class="nb-icon up">&#xe62c;</em>
+                        <em  class="nb-icon down">&#xe62d;</em>
+                    </span> -->
+                </li>
+            </ul>
+        </div>
+        <div class="nb-show-ranking">
+            <div class="loading">
+                <div class="page">
+                    <div class="page__demo">
+                        <div class="demo">
+                            <div class="cp-preloader cp-preloader_type1">
+                                <span class="cp-preloader__letter" data-preloader="L">L</span>
+                                <span class="cp-preloader__letter" data-preloader="O">O</span>
+                                <span class="cp-preloader__letter" data-preloader="A">A</span>
+                                <span class="cp-preloader__letter" data-preloader="D">D</span>
+                                <span class="cp-preloader__letter" data-preloader="I">I</span>
+                                <span class="cp-preloader__letter" data-preloader="N">N</span>
+                                <span class="cp-preloader__letter" data-preloader="G">G</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="listBox">
+            	<ul class="loading_list" style="z-index: 10;position: absolute; width: 100%; ">
+                <!--列表信息 ajax回填-->
+                <!-- <li style="position:relative">
+                    <div class="nb-show-ranking-title">
+                        <dl>
+                            <dd class="nb-flex nb-flex-1">
+                                <h1>村名</h1>
+                                <span>千余村</span>
+                            </dd>
+                            <dd class="nb-flex nb-flex-1">
+                                <h1>户数</h1>
+                                <span>361</span>
+                            </dd>
+                            <dd class="nb-flex nb-flex-2">
+                                <span>排名</span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="nb-show-ranking-title nb-show-ranking-number">
+                        <dl>
+                            <dd class="nb-flex nb-flex-1">
+                                <h1>评分</h1>
+                                <span>月总分</span>
+                            </dd>
+                            <dd class="nb-flex nb-flex-1">
+                                <div class="nb-flex-3 ng-fl">
+                                    <span>季总分</span>
+                                </div>
+                                <div class="nb-flex-3 ng-fl">
+                                    <span>年总分</span>
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="nb-show-ranking-title nb-show-ranking-number">
+                        <dl>
+                            <dd class="nb-flex nb-flex-1">
+                                <h1></h1>
+                                <span style="margin-left:34px" class="color_Red">20</span>
+                            </dd>
+                            <dd class="nb-flex nb-flex-1">
+                                <div class="nb-flex-3 ng-fl">
+                                    <span class="color_Red">20</span>
+                                </div>
+                                <div class="nb-flex-3 ng-fl">
+                                    <span class="color_Red">10</span>
+                                </div>
+                            </dd>
+                
+                        </dl>
+                    </div>
+                    <div class="absoulte-title">
+                        2
+                    </div>
+                </li> --> 
+            </ul>
+            <div id="load" style="position: absolute;left: 50%;bottom: 7px; transform: translateX(-50%);color:#C0BFC4;">
+            		加载中...
+            	</div>
+            </div>
+        </div>
+    </div>
+    <div id="footer" class="weui-tabbar nb-tabbar">
+        <a href="menu.html" class="weui-tabbar__item">
+            <!-- <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span> -->
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe63d;</i>
+                <!-- <img src="./images/icon_nav_button.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">考核管理</p>
+        </a>
+        <!--<a href="ranking.html" class="weui-tabbar__item weui-bar__item--on">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon" style="font-size:20px;">&#xe61c;</i>
+                 <img src="./images/icon_nav_msg.png" alt=""> 
+            </div>
+            <p class="weui-tabbar__label">考核排名</p>
+        </a>-->
+        <a href="javascript:;" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe613;</i>
+                <!-- <img src="./images/icon_nav_article.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">gis地图</p>
+        </a>
+        <a href="user.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe635;</i>
+                <!-- <img src="./images/icon_nav_cell.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">我的</p>
+        </a>
+    </div>
+</body>
+<script src="common/lib/jquery-2.1.4.js"></script>
+<script src="js/common.js"></script>
+<script src="common/lib/fastclick.js"></script>
+<script src="common/js/jquery-weui.js"></script>
+<script src="common/layui/layui.all.js"></script>
+<script src="common/js/swiper.js"></script>
+<script src="common/js/common.js"></script>
+<script src="js/mui.min.js"></script>
+<script src="common/js/main.js"></script>
+<script src="./common/js/scrollProbe.js" type="text/javascript" ></script>
+<script type="text/javascript">
+	
+	mui.init();
+	mui.back = function () {
+		window.location.href = "menu.html"
+	}
+	
+</script>
+
+<script>
+    $(".swiper-container").swiper({
+        loop: true,
+        autoplay: 3000
+    });
+    FastClick.attach(document.body);
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+        , layer = layui.layer,
+        time = $.getQueryString("time") || "getVillageTrendByMonth",
+        dataKind='month',
+        pageNum = 1,
+        pageSize=10,
+       	falg = true,
+        top = 0,
+        isDownDrap = true,
+        isUpDrap = false;
+        myScroll = null,
+        isLastPage = false;
+        $("body").on("click",".weui-icon-search",function(){
+        		$('.loading').show();
+        		pageNum = 1;
+				top = 0;
+				isDownDrap = true;
+       			respenceAjax(dataKind,time)
+        })
+        function drap() {
+        	//创造下拉环境
+        	$("#listBox").css({position:"relative",height:window.innerHeight-44-60-49-50,overflow: "hidden",width:"100%"});
+        	
+        	//
+        	myScroll = new IScroll('#listBox', { scrollX: false, scrollY: true, mouseWheel: false,click:true,probeType:2,startY:top,y:top});
+        	myScroll.on("scroll",function () {
+        		if(this.y>40 && falg){    //判断下拉
+						falg = false;
+					
+						pageNum = 1;
+						top = 0;
+						isDownDrap = true;
+						
+						$('.loading').show();
+       			 	    respenceAjax(dataKind,time)
+				       
+						
+				}else if(this.y<(this.maxScrollY-40) && falg){   //判断上拉
+						falg = false;	
+					
+				    	if(isLastPage == false){
+				    		pageNum ++;
+				    		top = $("#listBox ul").offset().top-44
+				    		 isUpDrap = true;
+				    		 respenceAjax(dataKind,time,"no",isUpDrap,myScroll)
+				    		
+				    		
+				    	}
+//				    	
+
+   			}	
+        	});
+        	myScroll.on("scrollEnd",function(){
+        		falg = true;
+        	});
+        	if($("#listBox").height()>$(".loading_list").height()){
+        		$("#load").css({"display":"none"})
+        	}else{
+        		$("#load").css({"display":"block"})
+        	}
+        	
+        
+        }
+        //列表封装
+        function showList(td,dateType,firstInitDrap,isUpDrap,myScrol){
+        	
+//      	return false
+//return false;
+            var loadHtml = ''
+//          $(".loading_list").html('')
+            if (td.length != 0) {
+                for (var i = 0; i < td.length; i++) {
+                	loadHtml += '<li style="position:relative">'
+                					+'<a href="rankMark_detail.html?bh='+td[i].villageId+'&time='+time+'&rank='+td[i].rank+'">'
+//              				
+				                    +'<div class="nb-show-ranking-title">'
+				                      +  '<dl>'
+				                          +'<dd class="nb-flex nb-flex-1">'  
+				                              +'<h1>村名</h1>'  
+				                                +'<span>'+td[i].villageName+'</span>'
+				                            +'</dd>'
+				                            +'<dd class="nb-flex nb-flex-1">'
+				                                +'<h1>户数</h1>'
+				                                +'<span>'+td[i].houseNum+'户</span>'
+				                            +'</dd>'
+				                           +'<dd class="nb-flex nb-flex-2">' 
+				                               +'<span>排名</span>' 
+				                            +'</dd>'
+				                        +'</dl>'
+				                    +'</div>'
+				                    +'<div class="nb-show-ranking-title nb-show-ranking-number">'
+				                        +'<dl>'
+				                            +'<dd class="nb-flex nb-flex-1">'
+				                                +'<h1>评分</h1>'
+				                                +'<span>月总分</span>'
+				                            +'</dd>'
+				                            +'<dd class="nb-flex nb-flex-1">'
+				                               + '<div class="nb-flex-3 ng-fl">'
+				                                    +'<span>季总分</span>'
+				                                +'</div>'
+				                                +'<div class="nb-flex-3 ng-fl">'
+				                                    +'<span>年总分</span>'
+				                                +'</div>'
+				                            +'</dd>'
+				                        +'</dl>'
+				                    +'</div>'
+				                    +'<div class="nb-show-ranking-title nb-show-ranking-number">'
+				                        +'<dl>'
+				                           +'<dd class="nb-flex nb-flex-1">'
+				                               + '<h1></h1>'
+				                               + '<span style="margin-left:34px" class="color_Red">'+td[i].totalMonth+'</span>'
+				                            +'</dd>'
+				                            +'<dd class="nb-flex nb-flex-1">'
+				                                +'<div class="nb-flex-3 ng-fl">'
+				                                    +'<span class="color_Red">'+td[i].totalQuarter+'</span>'
+				                                +'</div>'
+				                                +'<div class="nb-flex-3 ng-fl">'
+				                                   +'<span class="color_Red">'+td[i].totalYear+'</span>'
+				                                +'</div>'
+				                           +'</dd>'
+				                
+				                       +'</dl>'
+				                    +'</div>'
+				                    +'<div class="absoulte-title class" class-title="'+(i+1)+'">'+td[i].rank+'</div>'
+				                    +'</a>'
+				                +'</li>'
+//                  loadHtml += '<li style="position:relative">'
+//                  loadHtml += '<div class="nb-show-ranking-title">'
+//                      + '<dl>'
+//                      + '<dd class="nb-flex nb-flex-1"><h1>姓名</h1><span>' + td[i].realname+ '</span></dd>'
+//                      + '<dd class="nb-flex nb-flex-1"><h1>地址</h1><span>' + msgcl(td[i].adress) + '</span></dd>'
+//                      + '<dd class="nb-flex nb-flex-2"><span>排名</span></dd>'
+//                      + '</dl>'
+//                  loadHtml += '</div>'
+//                  loadHtml += '<div class="nb-show-ranking-title nb-show-ranking-number">'
+//                      + '<dl>'
+//                      if(dateType=="month"){
+//                          loadHtml += '<dd class="nb-flex nb-flex-1"><h1 style="vertical-align: middle">评分</h1><span>月总分<b class="color_Red" style="margin-left:10px">' + td[i].total + '分</b></span></dd>'
+//                      }else if(dateType=="quarter"){
+//                         loadHtml += '<dd class="nb-flex nb-flex-1"><h1 style="vertical-align: middle">评分</h1><span>季总分<b class="color_Red" style="margin-left:10px">' + td[i].total + '分</b></span></dd>'
+//                      }else{
+//                          loadHtml += '<dd class="nb-flex nb-flex-1"><h1 style="vertical-align: middle">评分</h1><span>年总分<b class="color_Red" style="margin-left:10px">' + td[i].total + '分</b></span></dd>'
+//                      }
+//                      + '</dl>'
+//                  loadHtml += '</div>'
+//                  loadHtml += '<div class="absoulte-title">' + (i + 1) + '</div>'
+//                  loadHtml += '</li>'
+                }
+            } else {
+            	loadHtml = "<p style='text-align:center'>暂无信息</p>"
+            }
+           
+            if(isDownDrap){
+            	
+            	 $(".loading_list").html(loadHtml);
+            	 isDownDrap = false;  
+            	 if(myScroll){
+            	 	setTimeout(function () {
+            	 		myScroll.refresh()
+            	 	},0)
+            	 }
+            	
+            }
+           
+           if(isUpDrap){
+	           
+	            	$(".loading_list").append(loadHtml);
+	           		isUpDrap = false;
+	            	setTimeout(function(){
+	            		myScrol.refresh()
+	            	},0)
+	            	
+	            }
+          
+            if(firstInitDrap == "firstInitDrap"){
+					drap()
+					
+				}
+        }
+        //ajax
+        var tokens = localStorage.token;
+        function respenceAjax(scoreNum,time,firstInitDrap,isUpDrap,myScroll){
+        	
+        	
+          $.ajax({
+                url:getVillageListByMonth,
+                type: 'post',
+                data:{
+                	pageSize:pageSize,
+                	pageNum:pageNum,
+                	condition:$("#searchInput").val(),
+                	dateType:scoreNum
+                },
+                dataType: 'json',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("TOKEN", tokens);
+                },
+                success: function (data) {
+                    var td = data.list;
+                 	isLastPage = data.isLastPage;
+
+                	if(isLastPage){
+                		$("#load").html("已经到最后一页")
+                	}
+                   
+                       showList(td,scoreNum,firstInitDrap,isUpDrap,myScroll);
+                    setTimeout(function() {
+                        $('.loading').hide();
+//                      $(".loading_list li").click(function () {
+////                        
+//                          var i = $(this).index();
+//                       
+//                          //window.location.href="zhen_detail.html?bh="+td[i].usersId
+//                          window.location.href="rankMark_detail.html?bh="+td[i].villageId+"&time="+time+"&rank="+td[i].rank
+//                      })
+                    },0);
+
+                }
+            })  
+        } 
+     
+      
+        //初始化
+        $('.loading').show()
+
+        
+       
+        //点击切换
+        /*设置全局变量*/
+        var paginationIndex=0,allNumber="",flag="";
+         switch ($.trim(time)){
+        	case $.trim("getVillageTrendByMonth"):
+        		dataKind = 'month'
+        		respenceAjax(dataKind,time,"firstInitDrap")
+        		paginationIndex=0
+        		break;
+        	case $.trim("getVillageTrendByQuarter"):
+        	 console.log(time)
+        		dataKind = 'quarter'
+        		paginationIndex=1;
+        		respenceAjax(dataKind,time,"firstInitDrap")
+        		break;
+        	default:
+        		dataKind = 'year';
+        		respenceAjax(dataKind,time,"firstInitDrap")
+        		paginationIndex=2
+        		break;
+        }
+        
+        $(".sorce-num li").eq(paginationIndex).addClass("active")
+        $(".sorce-num li").click(function(){
+        	$(".loading_list").html('')
+             var index = $(this).index();
+            allNumber = index
+            $(".sorce-num li").eq(allNumber).addClass("active").siblings().removeClass("active");
+            // $(".sorce-num li").find(".up").eq(allNumber).addClass("active").siblings().find(".up").removeClass("active");
+            switch (allNumber) {
+                case 0:
+                //getEvaluationByIdMonth 月
+                	pageNum = 1;
+                	dataKind = 'month'
+                	window.location.href = "rankMark.html?time=getVillageTrendByMonth"
+                    
+                    break;
+                case 1:
+                //getEvaluationByIdQuarter 季
+               		 pageNum = 1;
+                	dataKind = 'quarter';
+                 	window.location.href = "rankMark.html?time=getVillageTrendByQuarter"
+                    break;
+                case 2:
+                //getEvaluationByIdYear 年
+                pageNum = 1;
+                dataKind = 'year'
+                window.location.href = "rankMark.html?time=getVillageTrendByYear"
+                break;
+            }
+        })
+        
+    })
+</script>
+</html>

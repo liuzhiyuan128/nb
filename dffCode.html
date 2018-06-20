@@ -1,0 +1,199 @@
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<style type="text/css">
+			#bcid {
+				width: 100%;
+				height: 95%;
+				position: absolute;
+				background: #000000;
+				top: 5%;
+			}
+			#back{
+				
+				height: 5%;
+				padding-left: 12px;
+				padding-top: 5px;
+				color: green;
+				background: #000;
+			}
+			#back span{
+				
+				display: block;
+				margin-top: 4px;
+			}
+			html,
+			body,
+			div {
+				height: 100%;
+				width: 100%;
+			}
+			
+			.fbt {
+				color: #0E76E1;
+				width: 50%;
+				background-color: #ffffff;
+				float: left;
+				line-height: 44px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="back">
+			<span>
+				返回
+			</span>
+		</div>
+		<div id="bcid">
+			<!--盛放扫描控件的div-->
+		</div>
+		<script type="text/javascript" src="common/lib/jquery-2.1.4.js"></script>
+		<script src="common/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="common/js/qs,js"></script>
+
+		<script type="text/javascript">
+
+		
+		var	scan = null; //扫描对象  
+			mui.plusReady(function() {
+				mui.init();
+				setTimeout(function() {
+					startRecognize();
+				}, 100)
+
+			});
+
+			function startRecognize() {
+				try {
+					var filter;
+					//自定义的扫描控件样式  
+					var styles = {
+						frameColor: "",
+						scanbarColor: "",
+						background: ""
+					}
+					//扫描控件构造  
+					scan = new plus.barcode.Barcode('bcid', filter, styles);
+					scan.onmarked = function(type, result) {
+						var text = '';
+						switch(type) {
+							case plus.barcode.QR:
+								text = 'QR: ';
+								break;
+							case plus.barcode.EAN13:
+								text = 'EAN13: ';
+								break;
+							case plus.barcode.EAN8:
+								text = 'EAN8: ';
+								break;
+						}
+
+						//                  alert( text + " : "+ result.bh);  
+						var dataObj = eval("(" + result + ")");
+
+//						获取需要的id
+
+						$.ajax({
+							url:judgeSate + dataObj.bh,
+							type:"get",
+							dataType:"json",
+							headers:{"TOKEN":localStorage.token},
+							success:function (res) {
+								if(res.code == 200){
+									window.location.href = "fertilizerHouse.html?msg="+res.msg+"&bh="+dataObj.bh
+									scan.close();
+									scan.cancel();
+									
+								}else{
+									mui.toast("扫描失败")
+									window.location.href = "fertilizerHouse.html"
+									scan.close();
+									scan.cancel();
+								}
+								
+								
+							}
+						})
+//						localStorage.bhs = dataObj.bh
+					
+//
+
+
+
+//						mui.openWindow({
+//							url: 'inspection.html',
+//							extras: {
+//								ddd: dataObj.bh
+//							},
+//							createNew: true
+//						});
+
+
+						//                    
+					};
+					scan.onerror = onerror;
+					scan.start();
+					mui.back = function() {
+						
+						window.location.href = "fertilizerHouse.html";
+						scan.close();
+						scan.cancel();
+					}
+					$("#back").on("click", function () {
+						window.location.href = "fertilizerHouse.html";
+						scan.close();
+						scan.cancel();
+					})
+					
+
+					//打开关闭闪光灯处理  
+					var flag = false;
+					//          document.getElementById("turnTheLight").addEventListener('tap',function(){  
+					//             if(flag == false){  
+					//                scan.setFlash(true);  
+					//                flag = true;  
+					//             }else{  
+					//               scan.setFl  ash(false);  
+					//               flag = false;  
+					//             }  
+					//          });  
+				} catch(e) {
+					mui.toast('扫描失败');
+					setTimeout(function() {
+						
+						scan.close();
+						scan.cancel();
+						mui.openWindow({
+							url: 'fertilizerHouse.html'
+						});
+					}, 1000)
+				}
+			};
+
+			function onerror(e) {
+				
+				
+				mui.toast('扫描失败');
+				setTimeout(function() {
+					mui.openWindow({
+						url: 'fertilizerHouse.html'
+					});
+					scan.close();
+					scan.cancel();
+				}, 1000)
+			};
+			
+			
+
+			// 从相册中选择二维码图片
+		</script>
+	</body>
+
+</html>''

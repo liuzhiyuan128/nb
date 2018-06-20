@@ -1,0 +1,709 @@
+{
+	"@platforms": ["android", "iPhone", "iPad"],
+	"id": "H5C7E0B0C",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "金东农办-智慧监管",/*应用名称，程序桌面图标名称*/
+	"version": {
+		"name": "2.0.0",/*应用版本名称*/
+		"code": "83"
+	},
+	"description": "",/*应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"developer": {
+		"name": "",/*开发者名称*/
+		"email": "",/*开发者邮箱地址*/
+		"url": "http://www.dcloud.io"
+	},
+	"permissions": {
+        "Cache": {
+            "description": "管理应用缓存"
+        },
+        "Console": {
+            "description": "跟踪调试输出日志"
+        },
+        "Contacts": {
+            "description": "访问系统联系人信息"
+        },
+        "Events": {
+            "description": "应用扩展事件"
+        },
+        "Messaging": {
+            "description": "访问通讯能力"
+        },
+        
+        "Speech": {
+            "description": "管理语音识别插件"
+        },"Maps":{}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": true,"delay":"0"
+		},
+		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {"plugins":{"maps":{"baidu":{"appkey_ios":"\tahbA7fPZZpGcSblvGicvCB8LxwrLoTzt","appkey_android":"Wqv9QsLARNGQtQ6YLOw3kpYYFYAyaehE","appkey":"","description":""}}},
+			"apple": {
+				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+				"mobileprovision": "",/*iOS应用打包配置文件*/
+				"password": "",/*iOS应用打包个人证书导入密码*/
+				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+				"keystore": "",/*Android应用打包使用的密钥库文件*/
+				"password": "",/*Android应用打包使用密钥库中证书的密码*/
+				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+				"permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+			},
+			"orientation": ["portrait-primary", "portrait-secondary"],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+			"icons": {
+				"ios": {
+					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+					"auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+					"iphone": {
+						"normal": "",/*iPhone普通屏幕程序图标，分辨率：57x57*/
+						"retina": "",/*iPhone高分屏程序图标，分辨率：114x114*/
+						"retina7": "",/*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+						"spotlight-normal": "", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+						"spotlight-retina7": "",/*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "", /*iPhone设置页面程序图标，分辨率：29x29*/
+						"settings-retina": ""
+					},
+					"ipad": {
+						"normal": "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "", /*iPad高分屏程序图标，分辨率：144x144*/
+						"normal7": "", /*iPad iOS7程序图标，分辨率：76x76*/
+						"retina7": "", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						"spotlight-normal7": "",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						"spotlight-retina7": "",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "",/*iPad设置页面程序图标，分辨率：29x29*/
+						"settings-retina": ""
+					}
+				},
+				"android": {
+					"mdpi": "img/environmental_house (6).png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "img/environmental_house (6).png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "img/environmental_house (4).png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "img/environmental_house (3).png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "img/environmental_house (2).png","xxxhdpi":"img/environmental_house (1).png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "", /*iPhone3启动图片选，分辨率：320x480*/
+						"retina35": "",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						"retina40": "","retina55":"img/i1.png"
+					},
+					"ipad": {
+						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
+						"portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						"landscape": "", /*iPad横屏启动图片，分辨率：1024x748*/
+						"landscape-retina": "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						"portrait7": "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						"portrait-retina7": "",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						"landscape7": "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						"landscape-retina7": ""
+					}
+				},
+				"android": {
+					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
+					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
+					"hdpi": "img/1.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "img/2.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "img/3.png"
+				}
+			},"debug":false
+		},"ads":{"rp":false,"splash":false,"push":false,"spot":false},"adid":"126746250305"
+	},
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"index.html",
+					"map.html",
+					"khdb.html"
+				],
+				"priority": 0
+			},
+			"menu.html": {
+				"resources": [
+					"images/icon2.png"
+				],
+				"refer": [
+					"inspection.html",
+					"ranking.html",
+					"khdb.html",
+					"user.html",
+					"resoutRest.html",
+					"map.html",
+					"fertilizerHouse.html",
+					"dffdb.html",
+					"rankingDff.html",
+					"dffResout.html",
+					"resoutDff_detail.html",
+					"scavengingPhoto.html",
+					"imglist.html"
+				],
+				"priority": 0
+			},
+			"inspection.html": {
+				"resources": [],
+				"refer": [
+					"demo.html",
+					"khdb.html",
+					"menu.html",
+					"demo1.html",
+					"inspection.html"
+				],
+				"priority": 0
+			},
+			"demo.html": {
+				"resources": [
+					"inspection.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"khdb.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"wdb_detail.html",
+					"ranking.html",
+					"user.html",
+					"khdb.html"
+				],
+				"priority": 0
+			},
+			"ranking.html": {
+				"resources": [
+					"user.html",
+					"menu.html"
+				],
+				"refer": [
+					"zhen_detail.html",
+					"rankMark.html",
+					"map.html",
+					"ranking.html",
+					"townRank.html"
+				],
+				"priority": 0
+			},
+			"zhen_detail.html": {
+				"resources": [],
+				"refer": [
+					"ranking.html"
+				],
+				"priority": 0
+			},
+			"wdb_detail.html": {
+				"resources": [],
+				"refer": [
+					"khdb.html",
+					"cb.html"
+				],
+				"priority": 0
+			},
+			"user.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"index.html",
+					"ranking.html",
+					"khdb.html",
+					"map.html",
+					"mapSearch.html",
+					"rankingDff.html",
+					"changePassword.html"
+				],
+				"priority": 0
+			},
+			"resoutRest.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"resoutRest_detail.html",
+					"ranking.html",
+					"resoutDff_detail.html",
+					"user.html"
+				],
+				"priority": 0
+			},
+			"resoutRest_detail.html": {
+				"resources": [],
+				"refer": [
+					"resoutRest.html",
+					"khdb.html"
+				],
+				"priority": 0
+			},
+			"cb.html": {
+				"resources": [],
+				"refer": [
+					"khdb.html",
+					"wdb_detail.html"
+				],
+				"priority": 0
+			},
+			"rankMark.html": {
+				"resources": [],
+				"refer": [
+					"ranking.html",
+					"townRank.html",
+					"menu.html",
+					"rankMark_detail.html",
+					"rankMark.html"
+				],
+				"priority": 0
+			},
+			"map.html": {
+				"resources": [],
+				"refer": [
+					"user.html",
+					"ranking.html",
+					"menu.html",
+					"mapSearch.html"
+				],
+				"priority": 0
+			},
+			"fertilizerHouse.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"demo.html",
+					"dffCode.html",
+					"fertilizerHouse.html",
+					"dffdb.html"
+				],
+				"priority": 0
+			},
+			"mapSearch.html": {
+				"resources": [],
+				"refer": [
+					"user.html",
+					"menu.html",
+					"map.html",
+					"ranking.html"
+				],
+				"priority": 0
+			},
+			"dffdb.html": {
+				"resources": [
+					"menu.html"
+				],
+				"refer": [
+					"dffdb_detail.html",
+					"user.html",
+					"ranking.html",
+					"map.html",
+					"dffdb.html"
+				],
+				"priority": 0
+			},
+			"dffdb_detail.html": {
+				"resources": [],
+				"refer": [
+					"khdb.html",
+					"dffdb.html",
+					"cb.html",
+					"menu.html",
+					"dffdb_detail.html",
+					"dffCbOrDb.html"
+				],
+				"priority": 0
+			},
+			"dffCode.html": {
+				"resources": [],
+				"refer": [
+					"inspection.html",
+					"fertilizerHouse.html"
+				],
+				"priority": 0
+			},
+			"townRank.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"ranking.html",
+					"rankMark.html",
+					"townRank.html",
+					"townRank_detail.html"
+				],
+				"priority": 0
+			},
+			"dffCbOrDb.html": {
+				"resources": [],
+				"refer": [
+					"wdb_detail.html",
+					"dffdb.html",
+					"dffdb_detail.html"
+				],
+				"priority": 0
+			},
+			"resoutDff_detail.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"resoutRest.html",
+					"dffResout.html"
+				],
+				"priority": 0
+			},
+			"rankingDff.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"zhen_detail.html",
+					"rankingDff_detail.html",
+					"map.html",
+					"user.html",
+					"rankingDff.html"
+				],
+				"priority": 0
+			},
+			"rankingDff_detail.html": {
+				"resources": [],
+				"refer": [
+					"rankingDff.html"
+				],
+				"priority": 0
+			},
+			"demo1.html": {
+				"resources": [],
+				"refer": [
+					"inspection.html"
+				],
+				"priority": 0
+			},
+			"rankMark_detail.html": {
+				"resources": [],
+				"refer": [
+					"rankMark.html"
+				],
+				"priority": 0
+			},
+			"townRank_detail.html": {
+				"resources": [],
+				"refer": [
+					"townRank.html"
+				],
+				"priority": 0
+			},
+			"dffResout.html": {
+				"resources": [],
+				"refer": [
+					"menu.html",
+					"resoutDff_detail.html"
+				],
+				"priority": 0
+			},
+			"changePassword.html": {
+				"resources": [],
+				"refer": [
+					"user.html",
+					"index.html",
+					"changePassword.html"
+				],
+				"priority": 0
+			},
+			"scavengingPhoto.html": {
+				"resources": [
+					"menu.html"
+				],
+				"refer": [
+					"inspection.html"
+				],
+				"priority": 0
+			},
+			"imglist.html": {
+				"resources": [],
+				"refer": [
+					"menu.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"common/layui/images/face/59.gif",
+				"common/skins/minimal/blue.png",
+				"common/skins/square/grey.css",
+				"common/layui/css/modules/layer/default/loading-2.gif",
+				"common/skins/flat/yellow@2x.png",
+				"common/layui/images/face/36.gif",
+				"common/skins/minimal/blue@2x.png",
+				"common/images/swiper-3.jpg",
+				"common/skins/minimal/orange@2x.png",
+				"common/skins/square/pink.css",
+				"common/skins/flat/orange.png",
+				"common/layui/images/face/2.gif",
+				"common/lib/weui.css",
+				"common/skins/square/aero.css",
+				"common/layui/images/face/9.gif",
+				"common/skins/square/purple@2x.png",
+				"common/images/logo.png",
+				"common/lib/qrcode.lib.min.js",
+				"common/skins/polaris/polaris.css",
+				"fonts/mui.ttf",
+				"common/layui/images/face/68.gif",
+				"common/skins/minimal/aero.css",
+				"common/skins/line/yellow.css",
+				"second.html",
+				"common/skins/minimal/purple.png",
+				"common/layui/images/face/58.gif",
+				"common/skins/minimal/minimal.css",
+				"common/layui/images/face/8.gif",
+				"common/skins/flat/pink@2x.png",
+				"common/layui/css/modules/layer/default/icon.png",
+				"common/skins/flat/flat.css",
+				"common/js/swiper.min.js",
+				"common/layui/lay/modules/element.js",
+				"common/css/jquery-weui.css",
+				"common/skins/square/orange@2x.png",
+				"common/layui/images/face/6.gif",
+				"common/layui/images/face/21.gif",
+				"common/layui/images/face/33.gif",
+				"common/layui/images/face/28.gif",
+				"images/iconfont-tianjia.png",
+				"common/skins/flat/yellow.css",
+				"common/skins/line/red.css",
+				"common/layui/lay/modules/tree.js",
+				"common/layui/images/face/69.gif",
+				"common/skins/flat/grey@2x.png",
+				"common/layui/images/face/0.gif",
+				"common/skins/square/green.png",
+				"css/common.css",
+				"common/layui/images/face/4.gif",
+				"common/images/icons-up.png",
+				"js/utitls.js",
+				"common/layui/images/face/50.gif",
+				"common/css/main.css",
+				"common/layui/images/face/1.gif",
+				"common/js/jquery.icheck.min.js",
+				"common/layui/images/face/26.gif",
+				"common/layui/images/face/3.gif",
+				"common/skins/square/purple.png",
+				"common/skins/square/yellow.css",
+				"common/layui/lay/modules/mobile.js",
+				"common/layui/images/face/40.gif",
+				"common/js/jquery.icheck.js",
+				"common/skins/flat/blue.png",
+				"common/skins/minimal/orange.png",
+				"common/layui/images/face/46.gif",
+				"common/layui/images/face/27.gif",
+				"common/layui/images/face/10.gif",
+				"common/skins/minimal/green.png",
+				"common/layui/css/modules/layer/default/loading-0.gif",
+				"common/skins/square/orange.css",
+				"common/layui/images/face/5.gif",
+				"common/skins/flat/_all.css",
+				"common/skins/flat/pink.css",
+				"common/layui/css/layui.css",
+				"common/skins/minimal/grey.css",
+				"common/layui/images/face/43.gif",
+				"common/layui/lay/modules/carousel.js",
+				"common/skins/flat/orange@2x.png",
+				"common/lib/quagga.min.js",
+				"common/layui/images/face/49.gif",
+				"common/layui/images/face/45.gif",
+				"common/skins/square/square@2x.png",
+				"common/skins/square/grey.png",
+				"common/css/check.css",
+				"common/skins/flat/grey.png",
+				"common/skins/square/square.css",
+				"common/layui/images/face/51.gif",
+				"common/layui/images/face/44.gif",
+				"common/skins/square/purple.css",
+				"common/skins/minimal/red@2x.png",
+				"common/layui/images/face/54.gif",
+				"common/js/swiper.js",
+				"common/js/main.js",
+				"common/skins/square/blue.css",
+				"common/skins/square/aero@2x.png",
+				"common/skins/flat/pink.png",
+				"common/skins/flat/purple@2x.png",
+				"common/skins/minimal/red.css",
+				"common/skins/minimal/orange.css",
+				"common/mock/mock.json",
+				"common/layui/images/face/19.gif",
+				"common/layui/lay/modules/layer.js",
+				"common/skins/minimal/aero@2x.png",
+				"common/images/bg.jpg",
+				"common/layui/images/face/25.gif",
+				"common/skins/square/aero.png",
+				"common/skins/square/red.css",
+				"common/layui/images/face/53.gif",
+				"common/skins/flat/purple.png",
+				"common/skins/square/yellow@2x.png",
+				"common/layui/images/face/13.gif",
+				"common/layui/font/iconfont.ttf",
+				"common/layui/images/face/70.gif",
+				"common/css/jquery-weui.min.css",
+				"common/skins/minimal/pink.css",
+				"common/skins/square/red.png",
+				"common/skins/minimal/minimal@2x.png",
+				"common/layui/lay/modules/laydate.js",
+				"common/layui/images/face/17.gif",
+				"common/skins/square/green.css",
+				"common/layui/images/face/7.gif",
+				"common/skins/line/purple.css",
+				"common/layui/images/face/66.gif",
+				"common/skins/minimal/green@2x.png",
+				"common/skins/line/aero.css",
+				"common/skins/minimal/yellow.css",
+				"common/mock/ranking.json",
+				"common/layui/images/face/18.gif",
+				"common/layui/images/face/65.gif",
+				"common/skins/line/line.png",
+				"common/js/jquery-weui.js",
+				"common/layui/images/face/31.gif",
+				"common/layui/images/face/39.gif",
+				"common/skins/flat/aero.png",
+				"common/layui/images/face/14.gif",
+				"common/skins/polaris/polaris@2x.png",
+				"common/lib/jquery-2.1.4.js",
+				"common/layui/images/face/61.gif",
+				"common/layui/images/face/15.gif",
+				"common/layui/lay/modules/upload.js",
+				"common/skins/square/yellow.png",
+				"common/skins/square/grey@2x.png",
+				"common/skins/flat/orange.css",
+				"js/common.js",
+				"common/skins/minimal/purple.css",
+				"css/iconfont.css",
+				"common/layui/css/modules/laydate/default/laydate.css",
+				"common/layui/css/modules/layer/default/layer.css",
+				"common/skins/minimal/pink.png",
+				"common/layui/layui.all.js",
+				"js/mui.js",
+				"common/skins/flat/yellow.png",
+				"common/layui/css/layui.mobile.css",
+				"common/images/swiper-2.jpg",
+				"common/layui/images/face/71.gif",
+				"common/layui/images/face/11.gif",
+				"common/skins/minimal/aero.png",
+				"common/layui/images/face/23.gif",
+				"common/layui/images/face/48.gif",
+				"common/skins/minimal/minimal.png",
+				"common/layui/layui.js",
+				"common/layui/images/face/16.gif",
+				"common/skins/minimal/grey@2x.png",
+				"common/skins/square/orange.png",
+				"common/skins/futurico/futurico.png",
+				"common/skins/flat/green.png",
+				"common/skins/square/green@2x.png",
+				"common/skins/minimal/yellow@2x.png",
+				"common/layui/images/face/64.gif",
+				"common/images/swiper-1.jpg",
+				"common/skins/square/red@2x.png",
+				"common/layui/images/face/52.gif",
+				"common/js/city-picker.min.js",
+				"common/layui/images/face/55.gif",
+				"common/skins/square/pink@2x.png",
+				"common/lib/zepto.js",
+				"common/layui/images/face/32.gif",
+				"common/layui/lay/modules/laypage.js",
+				"id.html",
+				"common/layui/images/face/30.gif",
+				"js/mui.min.js",
+				"common/skins/line/_all.css",
+				"common/layui/images/face/38.gif",
+				"common/layui/images/face/47.gif",
+				"common/layui/lay/modules/util.js",
+				"common/layui/images/face/60.gif",
+				"common/skins/square/square.png",
+				"common/skins/flat/aero.css",
+				"common/skins/square/blue@2x.png",
+				"common/layui/images/face/35.gif",
+				"common/skins/minimal/yellow.png",
+				"common/skins/minimal/pink@2x.png",
+				"common/skins/line/pink.css",
+				"css/nb.css",
+				"common/skins/futurico/futurico@2x.png",
+				"common/skins/flat/blue@2x.png",
+				"common/lib/fastclick.js",
+				"common/skins/flat/red.css",
+				"css/mui.min.css",
+				"common/layui/lay/modules/layedit.js",
+				"common/skins/flat/red@2x.png",
+				"common/layui/images/face/62.gif",
+				"common/skins/minimal/grey.png",
+				"common/js/common.js",
+				"common/skins/minimal/purple@2x.png",
+				"common/layui/images/face/56.gif",
+				"common/skins/minimal/red.png",
+				"common/layui/lay/modules/form.js",
+				"common/layui/font/iconfont.eot",
+				"common/skins/square/pink.png",
+				"common/skins/flat/red.png",
+				"common/layui/images/face/37.gif",
+				"common/layui/css/modules/layer/default/loading-1.gif",
+				"common/skins/flat/aero@2x.png",
+				"common/skins/flat/purple.css",
+				"common/layui/images/face/20.gif",
+				"common/skins/line/line.css",
+				"common/skins/line/orange.css",
+				"common/skins/polaris/polaris.png",
+				"common/layui/lay/modules/code.js",
+				"common/skins/line/grey.css",
+				"common/skins/minimal/green.css",
+				"common/skins/minimal/_all.css",
+				"css/mui.css",
+				"common/layui/font/iconfont.woff",
+				"common/layui/font/iconfont.svg",
+				"common/skins/flat/flat.png",
+				"common/js/jquery-weui.min.js",
+				"common/lib/qrcode.js",
+				"common/skins/flat/flat@2x.png",
+				"common/skins/futurico/futurico.css",
+				"common/js/city-picker.js",
+				"common/skins/flat/green.css",
+				"css/feedback-page.css",
+				"common/skins/minimal/blue.css",
+				"common/layui/lay/modules/jquery.js",
+				"detail.html",
+				"common/skins/flat/grey.css",
+				"common/skins/line/line@2x.png",
+				"common/layui/lay/modules/table.js",
+				"common/lib/weui.min.css",
+				"common/layui/images/face/41.gif",
+				"common/layui/images/face/24.gif",
+				"common/layui/images/face/42.gif",
+				"common/skins/line/green.css",
+				"common/layui/images/face/22.gif",
+				"common/layui/images/face/29.gif",
+				"common/skins/flat/blue.css",
+				"first.html",
+				"common/layui/images/face/34.gif",
+				"common/layui/lay/modules/laytpl.js",
+				"common/skins/square/blue.png",
+				"common/js/jquery.cform.min.js",
+				"common/skins/flat/green@2x.png",
+				"common/skins/all.css",
+				"common/skins/square/_all.css",
+				"common/layui/css/modules/code.css",
+				"common/layui/lay/modules/flow.js",
+				"common/skins/line/blue.css",
+				"css/app.css",
+				"common/layui/images/face/57.gif",
+				"css/font-awesome.min.css",
+				"common/layui/css/modules/layer/default/icon-ext.png",
+				"common/layui/images/face/63.gif",
+				"common/layui/images/face/12.gif",
+				"common/layui/images/face/67.gif"
+			]
+		}
+	},
+	"unpackage":[]
+}

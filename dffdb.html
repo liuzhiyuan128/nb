@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>堆肥房考核督办</title>
+    <link rel="stylesheet" href="common/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="common/lib/weui.min.css">
+    <link rel="stylesheet" href="common/css/main.css">
+  
+    <style type="text/css">
+    	.bottom{
+    		position: fixed;
+			bottom: 0;
+			left: 0;
+    	}
+    	.nb-item-wrapper{
+    		margin-bottom: 50px;
+    	}
+    	body{
+    		width: 100%;
+    		position: fixed;
+    		top: 0;
+    		left: 0;
+    	}
+    	#search{
+    		position: fixed;
+    		width: 100%;
+    		height: 44px;
+    		/*background: red;*/
+    		/*z-index: 99999*/
+    		right: 0;
+    		top:0;
+    		padding: 0 10px;
+    		box-sizing: content-box;
+    		
+    		line-height: 44px;
+    		
+    		
+    	}
+    	#search i{
+    		font-size: 22px;
+    		color:#fff;
+    		position: absolute;
+    		right: 10px;
+    		top: 50%;
+    		width: 22px;
+    		height: 22px;
+    		line-height: 22px;
+    		margin-top: -11px;
+    		
+    	}
+    	#search #inputBox{
+    		width: 100%;
+    		height: 100%;
+    		position: relative;
+    		
+    	}
+    	#search input {
+    			position: absolute;
+    			top: 50%;
+    			margin-top: -15px;
+    			left: 7%;
+    			
+    		    width: 86%;
+			    height: 70%;
+			    background: #fff;
+			    border: none;
+			    border-radius: 0px;
+			    padding-left: 12px;
+			   
+			    display: none;
+    	}
+    	.my-pagination-ul li{
+    		width: 24.6% !important;
+    	} 
+         .dropNavBox{
+            margin-top: 44px;
+            background: #fff;
+            color: #666;
+            position: relative;
+             width: 100%;
+             z-index: 100;
+             
+        }
+          .dropNav{
+            width: 50%;
+            float: left;
+            text-align: center;
+            display: none;
+            height: 24px;
+            border-bottom: 1px solid #ccc;
+        }
+        .dropNav i{  
+            font-size: 15px;
+        }
+        .showContent input{
+            height: 30px;
+             margin-left: -5px;
+             margin-right: -50px;
+             border: none;
+            
+        }
+        .showContent{
+            top: 22px;
+            background: #fff;
+            position: absolute;
+            width: 100%;
+            display: none;
+
+        }
+        .showTree{
+            top: 22px;
+            background: #fff;
+            position: absolute;
+            width: 100%;
+            display: none;
+            height: 200px;
+            overflow: hidden;
+            text-align: center;
+            
+        }
+        .showTree .town{
+            height: 200px;
+            overflow-y:scroll;
+            float: left;
+            width: 30%;
+          
+            
+        }
+        .showTree .vllage{
+            height: 200px;
+            overflow-y:scroll;
+            float: left;
+            width: 70%;
+            background: #f0f0f0;
+        }
+       .mask{
+           background: rgba(0, 0, 0, 0.6);
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           z-index: 99;
+           display: none;
+       }
+       .showTree > div > div{
+           height: 30px;
+           line-height: 30px;
+           
+
+       }
+       .townActive{
+            background: #f0f0f0; 
+            color: rgb(20, 165, 184);
+       }
+       .vllageActive{
+           color: rgba(62, 147, 233, 1);
+       }
+    	
+    </style>
+    <script>window.PointerEvent = undefined</script>
+</head>
+<body style="background:#f0f0f0;">
+    <div class="mask"></div>
+    <div class="nb-fixed-header">
+        <h1 id="test">堆肥房考核督办</h1>
+        <div id="search">
+        	<div id="inputBox">
+        		<a href="menu.html" >
+            <i class="nb-icon">&#xe61d;</i>
+        </a>
+        		<input type="search" placeholder="请输入镇名/村民/住户名" id="searchText" value="" />
+        	</div>
+        	<i class="weui-icon-search"></i>
+        </div>
+    </div>
+    <div class="dropNavBox">
+        <div style="overflow: hidden;">
+            <div class="dropNav">
+                时间
+                <i class="mui-icon mui-icon-arrowdown"></i>
+            </div>
+            <div class="dropNav">村或镇
+                <i class="mui-icon mui-icon-arrowdown"></i>
+            </div>
+        </div>
+        <div class="showContent">
+            <div>
+                开始时间
+                <input id="startTime" readonly="readonly" type="text">
+            </div>
+            <div>
+                结束时间
+                <input id="endTime" readonly="readonly" type="text">
+            </div>
+        </div>
+    
+        <div class="showTree">
+            <div class="town">
+            </div>
+            <div class="vllage">
+            </div>
+        </div>
+    </div>
+    <ul class="my-pagination-ul my-pagination-ul1" style="background:#f0f0f0">
+        <li class="active"><a href="javascript:;">检查合格</a></li>
+        <li><a href="javascript:;">村督办</a></li>
+        <li><a href="javascript:;">镇督办</a></li>
+        <li><a href="javascript:;">区督办</a></li>
+    </ul>
+    <div class="nb-item-wrapper">
+        <div class="nb-show-ranking">
+            <div class="loading">
+                <div class="page">
+                    <div class="page__demo">
+                        <div class="demo">
+                            <div class="cp-preloader cp-preloader_type1">
+                                <span class="cp-preloader__letter" data-preloader="L">L</span>
+                                <span class="cp-preloader__letter" data-preloader="O">O</span>
+                                <span class="cp-preloader__letter" data-preloader="A">A</span>
+                                <span class="cp-preloader__letter" data-preloader="D">D</span>
+                                <span class="cp-preloader__letter" data-preloader="I">I</span>
+                                <span class="cp-preloader__letter" data-preloader="N">N</span>
+                                <span class="cp-preloader__letter" data-preloader="G">G</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="listBox" style="">
+            	<ul class="loading_list" style="position: absolute; z-index: 10; width: 100%;">
+                <!--列表信息 ajax回填-->
+                <!-- <li style="position:relative">
+                    <div class="nb-show-ranking-title">
+                        <dl>
+                            <dd class="nb-flex nb-flex-1">
+                                <h1>村名</h1>
+                                <span>千余村</span>
+                            </dd>
+                            <dd class="nb-flex nb-flex-1">
+                                <h1>户数</h1>
+                                <span>361</span>
+                            </dd>
+                            <dd class="nb-flex nb-flex-2">
+                                <span>排名</span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="nb-show-ranking-title nb-show-ranking-number">
+                        <dl>
+                            <dd class="nb-flex nb-flex-1">
+                                <h1>评分</h1>
+                                <span>月总分</span>
+                            </dd>
+                            <dd class="nb-flex nb-flex-1">
+                                <div class="nb-flex-3 ng-fl">
+                                    <span>季总分</span>
+                                </div>
+                                <div class="nb-flex-3 ng-fl">
+                                    <span>年总分</span>
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="nb-show-ranking-title nb-show-ranking-number">
+                        <dl>
+                            <dd class="nb-flex nb-flex-1">
+                                <h1></h1>
+                                <span style="margin-left:34px" class="color_Red">20</span>
+                            </dd>
+                            <dd class="nb-flex nb-flex-1">
+                                <div class="nb-flex-3 ng-fl">
+                                    <span class="color_Red">20</span>
+                                </div>
+                                <div class="nb-flex-3 ng-fl">
+                                    <span class="color_Red">10</span>
+                                </div>
+                            </dd>
+                
+                        </dl>
+                    </div>
+                    <div class="absoulte-title">
+                        2
+                    </div>
+                </li> --> 
+            </ul>
+            	<div id="load" style=" position: absolute;bottom: 7px; left:0; color:#C0BFC4;width: 100%;text-align: center;">
+            		加载中...
+            	</div>
+            </div>
+        </div>
+    </div>
+    <div class="weui-tabbar nb-tabbar bottom">
+        <a href="menu.html" class="weui-tabbar__item">
+            <!-- <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span> -->
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe63d;</i>
+                <!-- <img src="./images/icon_nav_button.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">考核管理</p>
+        </a>
+        <!--<a href="ranking.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon" style="font-size:20px;">&#xe61c;</i>
+                 <img src="./images/icon_nav_msg.png" alt=""> 
+            </div>
+            <p class="weui-tabbar__label">考核排名</p>
+        </a>-->
+        <a href="map.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe613;</i>
+                <!-- <img src="./images/icon_nav_article.png" alt=""> -->
+          </div>
+            <p class="weui-tabbar__label">gis地图</p>
+        </a>
+        <a href="user.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="nb-icon">&#xe635;</i>
+                <!-- <img src="./images/icon_nav_cell.png" alt=""> -->
+            </div>
+            <p class="weui-tabbar__label">我的</p>
+        </a>
+    </div>
+    <input id="dataType" type="hidden">
+    
+</body>
+<script src="common/lib/jquery-2.1.4.js"></script>
+<script src="common/js/main.js"></script>
+<script src="common/lib/fastclick.js"></script>
+<script src="common/js/jquery-weui.js"></script>
+<script src="common/layui/layui.all.js"></script>
+<script src="common/js/common.js"></script>
+<script src="common/js/swiper.js"></script>
+<script type="text/javascript" src="./common/js/isScroll.js"></script>
+<script src="js/mui.min.js"></script>
+<script src="./common/js/scrollProbe.js" type="text/javascript" ></script>
+<script src="html5plus://ready"></script>
+<!--搜索框效果-->
+<script>
+        $("#startTime").datetimePicker({
+            title: "请选择开始时间",
+
+        });
+        function formater(d) {
+            return (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate()));
+        }
+        $("#endTime").datetimePicker({
+            title: "请选择结束时间",
+        });
+        function formater(d) {
+            return (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate()));
+        }
+
+</script>
+<script>
+	
+    $(".swiper-container").swiper({
+        loop: true,
+        autoplay: 3000
+    });
+   var dataType = $.getQueryString("dataType") || "qualified";
+   $("#dataType").val(dataType)
+  
+    FastClick.attach(document.body);
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+        , layer = layui.layer;
+        //下拉动作
+        var pageSize=10;
+        var falg = true;
+        var pageNum = 1;
+        var isLastPage = false;
+        var myScroll = null;
+        var height = window.innerHeight-44-67-49;
+        var first = [];
+        var treeData = [];
+        $.ajax({
+            url: areaTownTree,
+            headers: { token: localStorage.token },
+            type: 'get',
+            success: function (res) {
+
+                treeData = res.data;
+                for (var i = 0; i < treeData.length; i++) {
+                    var item = treeData[i];
+                    if (item.pid == 10) {
+                        first.push(item)
+                    }
+                }
+            }
+        })
+        $("#search i").click(function () {
+            if($("#searchText")[0].style.display && $("#searchText")[0].style.display != 'none'){
+                $("#searchText").fadeOut();
+                $(".mask").fadeOut('fast');
+                $(".showContent").fadeOut('fast');
+                $('.dropNav').slideUp('fast');
+                $('.showTree').hide()
+                $('.loading').show()
+                $(".loading_list").html('');
+                respenceAjax('0', "1")
+
+            } else {
+                $("#searchText").fadeIn();
+                $(".dropNav").slideDown("fast");
+            }
+        })
+        $(".dropNav:eq(0)").on("click", function (e) {
+            $(".showContent").fadeIn("fast");
+            $(".mask").fadeIn("fast");
+            $('.showTree').hide()
+        })
+        $(".dropNav:eq(1)").on("click", function (e) {
+            var div = '';
+            for (var i = 0; i < first.length; i++) {
+                div += "<div id = '" + first[i].id + "'>" + first[i].name + "</div>"
+            }
+            var second = []
+            for (var i = 0; i < treeData.length; i++) {
+                var item = treeData[i]
+                if (item.pid == first[0].id) {
+                    second.push(item)
+                }
+            }
+            var secondDiv = ''
+            for (var i = 0; i < second.length; i++) {
+                var item = second[i];
+                secondDiv += '<div id = "' + second[i].id + '">' + item.name + '</div>'
+            }
+            $('.vllage').html(secondDiv)
+
+            $('.town').html(div)
+            $('.town div').eq(0).addClass('townActive')
+            $('.showTree').show()
+            $(".mask").fadeIn("fast");
+            $('.showContent').hide()
+        })
+
+        $('.mask').click(function () {
+              $("#searchText").fadeOut();
+            $(".mask").fadeOut('fast');
+            $(".showContent").fadeOut('fast');
+            $('.dropNav').slideUp('fast');
+            $('.showTree').hide()
+        })
+        $('.town').on('click', 'div', function () {
+            if ($(this).hasClass("townActive")) {
+                $(this).removeClass('townActive')
+                return;
+            }
+            var div = ''
+            var id = $(this).attr('id');
+            for (var i = 0; i < treeData.length; i++) {
+                var item = treeData[i]
+                if (item.pid == id) {
+                    div += '<div id = "' + item.id + '">' + item.name + '</div>'
+                }
+            }
+            $('.vllage').html(div)
+            $(this).siblings().removeClass('townActive')
+            $(this).addClass('townActive')
+        })
+        $('.vllage').on('click', "div", function () {
+            if ($(this).hasClass("vllageActive")) {
+                $(this).removeClass('vllageActive')
+                return false;
+            }
+            $(this).siblings().removeClass('vllageActive')
+            $(this).addClass('vllageActive')
+
+        })
+        //列表封装
+        function showList(td,dataType){
+        	
+    
+        	if(!td) return false;
+            var loadHtml = ''
+//          $(".loading_list").html('')
+            if (td.length != 0) {
+//          	window.location.href="dffdb_detail.html?id="+td[i].id+"&checkCompostingId="+td[i].checkCompostingId+"&dataType="+dataType
+                for (var i = 0; i < td.length; i++) {
+                    loadHtml += '<li style="position:relative"><a href="dffdb_detail.html?id='+td[i].id+'&checkCompostingId='+td[i].checkCompostingId+'&dataType='+dataType+'" style="display:block;overflow:hidden">'
+                    loadHtml += '<div class="nb-show-ranking-title nb-show-ranking-title1">'
+                        + '<dl>'
+                        + '<dd class="nb-flex nb-flex-1"><h1>堆肥房名称</h1><span>' + td[i].compostingName + '</span></dd>'
+                        + '</dl>'
+                    loadHtml += '</div>'
+                    loadHtml += '<div class="nb-show-ranking-title nb-show-ranking-title1">'
+                        + '<dl>'
+                        + '<dd class="nb-flex nb-flex-2"><h1>房主名称</h1><span>' + td[i].responsibleName + '</span></dd>'
+                        + '<dd class="nb-flex nb-flex-3"><h1>联系电话</h1><span>'+td[i].responsiblePhone+'</span></dd>'
+                        + '</dl>'
+                    loadHtml += '</div>'
+                    loadHtml += '<div class="nb-show-ranking-title nb-show-ranking-title1 nb-show-ranking-color-red">'
+                        + '<dl>'
+                        + '<dd class="nb-flex nb-flex-2"><h1>评分</h1><span class="color_Red">'+td[i].total+'</span></dd>'
+                        + '<dd class="nb-flex nb-flex-3"><h1>时间</h1><span>'+td[i].createTime+'</span></dd>'
+                        + '</dl>'
+                    loadHtml += '</div>'
+                    if($.trim(dataType) !== $.trim("qualified")){
+                    		 loadHtml += '<div class="nb-show-ranking-title nb-show-ranking-title1 nb-show-ranking-color-red">'
+		                        + '<dl>'
+
+		                        + '<dd class="nb-flex nb-flex-4"><h1>限定时间</h1><span>'+td[i].limitTime+'</span></dd>'
+		                        + '</dl>'
+		                    loadHtml += '</div>'
+                    	}
+                    loadHtml+='<div class="small_icons" style="position:absolute;right:10px;top:-1px;width:61px;height:34px;">';
+                    	if(td[i].sign != null){
+                    		loadHtml+='<img style="width:100%;height:100%;" src="./common/images/dffstate/'+td[i].sign+'.png" style="width:20px;height:20px;zoom:1">';
+                    	}
+                    	loadHtml+='</div>';
+                    	
+                    loadHtml += '</a></li>'
+                }
+            } else {
+            	loadHtml = "<p style='text-align:center;'>暂无信息<p>"
+            }
+            $(".loading_list").append(loadHtml);
+            setTimeout(function(){
+            	 $('.loading').hide();
+            },0)
+          
+         	$("#searchText").fadeOut().val("")
+         	if(!myScroll){
+         		drap();
+         	}
+         	if(myScroll){
+         		myScroll.refresh();
+         	}
+        }
+        
+        
+        
+        //搜索
+        $("#search i").click(function () {
+        	$("#searchText").fadeIn()
+        	if($("#searchText").val().length>0){
+        		$(".loading_list").html('');
+        		$('.loading').show()
+        		respenceAjax('0',"1",dataType)
+        	} 
+
+       	})
+       	//搜索
+       	
+        function drap() {
+        	
+        	//创造下拉环境
+        	$("#listBox").css({position:"relative",height:height,overflow: "hidden"})
+        	//
+        	myScroll = new IScroll('#listBox', { scrollX: false, scrollY: true, mouseWheel: false,click:true,probeType:2});
+        	myScroll.on("scroll",function () {
+        		if(this.y>40 && falg){    //判断下拉
+						falg = false;
+						
+						$(".loading_list").html('');
+						pageNum = 1
+				       respenceAjax('0',"drap",dataType)
+				       
+				
+				}else if(this.y<(this.maxScrollY-40) && falg){   //判断上拉
+						falg = false;	
+						
+				    	if(isLastPage == false){
+				    		pageNum ++;
+				    		top = $("#listBox ul").offset().top-44
+				    		
+				    		respenceAjax('0',"1",dataType)
+				    	}
+				    	
+
+   			}	
+        	});
+        	myScroll.on("scrollEnd",function(){
+        		falg = true;
+        	});
+        	if($("#listBox").height()>$(".loading_list").height()){
+        		$("#load").css({"display":"none"})
+        	}else{
+        		$("#load").css({"display":"block"})
+        	}
+        }
+        //ajax
+        
+        var tokens=localStorage.token;
+     
+
+        function respenceAjax(type,drapDown,dataType){
+          var villageId = null;
+            if ($('.vllageActive').attr('id')) {
+                villageId = $('.vllageActive').attr('id');
+            } else if ($('.townActive').attr('id')) {
+                villageId = $('.townActive').attr('id');
+            }
+            var startTime = $('#startTime').val()
+            var endTime = $('#endTime').val();
+          $.ajax({
+                url: selectCheckComposting,
+                type: 'POST',
+                data: {
+                   pageNum:pageNum,
+                   pageSize:pageSize,
+                   condition:$("#searchText").val(),
+                   dataType:$('#dataType').val(),
+                    villageId: villageId,
+                    startTime: startTime.substr(0, startTime.indexOf(" ")),
+                    endTime: endTime.substr(0, endTime.indexOf(" "))
+                },
+                dataType: 'json',
+                beforeSend: function (xhr) {
+                
+                },
+                headers:{"TOKEN":tokens},
+                success: function (data) {
+                	
+                	
+                	
+                	if(data.code == 200){
+                		data = data.data
+                		isLastPage = data.isLastPage;
+	                	if(isLastPage){
+	                		$("#load").html("<div style='text-align: center;width: 100%;'>已经到最后一页</div>")
+	                	}
+	                	
+	                    var td = data.list;
+	                     showList(td,dataType);
+//	                    setTimeout(function () {
+//	                       
+//	                       
+//	                        $(".loading_list li").click(function () {
+//	                            
+//	                            var i = $(this).index();
+//								window.location.href="dffdb_detail.html?id="+td[i].id+"&checkCompostingId="+td[i].checkCompostingId+"&dataType="+dataType
+//	                        })
+//	                    }, 0);
+                	}else{
+                		plus.nativeUI.toast(data.msg)
+                	}
+                    
+                }
+            })  
+        } 
+        
+        //初始化
+      	$('.loading').show()
+       if($.trim(dataType)==$.trim("qualified")){
+//     	显示合格高亮
+       	$(".my-pagination-ul li").eq(0).addClass("active").siblings().removeClass("active")
+       		 respenceAjax('0',1,"qualified")
+       }else if($.trim(dataType)==$.trim("village")){
+
+       	 	$(".my-pagination-ul li").eq(1).addClass("active").siblings().removeClass("active")
+       		 respenceAjax('0',1,"village")
+       }if($.trim(dataType)==$.trim("town")){
+       	 	$(".my-pagination-ul li").eq(2).addClass("active").siblings().removeClass("active")
+       		 respenceAjax('0',1,"town")
+       }else if($.trim(dataType)==$.trim("area")){
+       		$(".my-pagination-ul li").eq(3).addClass("active").siblings().removeClass("active")
+       		respenceAjax('0',1,"area")
+       }
+        //点击切换
+        /*设置全局变量*/
+       
+       
+        $(".my-pagination-ul li").click(function(e){
+        	$(".loading_list").html('');
+       
+        	var sameDataType = $.trim(e.delegateTarget.innerText)
+        
+            var index=$(this).index();
+            paginationIndex=index
+            $(".my-pagination-ul li").eq(index).addClass("active").siblings().removeClass("active");
+            
+			
+            switch (sameDataType){
+            	case $.trim("检查合格"):
+            	 dataType = "qualified"
+            	
+            		break;
+            	case $.trim("村督办"):
+            	 dataType = "village"
+            	 respenceAjax('0',1,"village")
+            		break;
+            	case $.trim("镇督办"):
+            	 dataType = "town"
+            	 respenceAjax('0',1,"town")
+            		break;
+            	default:
+            	 dataType = "area"
+            	 respenceAjax('0',1,"area")
+            		break;
+            }
+             window.location.href = "dffdb.html?dataType="+dataType
+
+        });
+        
+       
+    })
+</script>
+	<!--后退功能-->
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function () {
+			mui.back = function () {
+				window.location.href = "menu.html"
+		}
+	
+
+})
+		
+		
+	</script>
+</html>

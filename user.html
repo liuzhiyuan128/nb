@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="common/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="common/lib/weui.min.css">
+    <link rel="stylesheet" href="common/css/main.css">
+    <title>Document</title>
+</head>
+<body ontouchstart style="background:#f0f0f0">
+
+    <div class="userCenter">
+        <div class="user-msg">
+            <div class="user-i-img clearfix"></div>
+        </div>
+        <div class="user-msg">
+           <p>王**</p>
+        
+        </div>
+        <div class="user-msg" style="margin-top:12px">
+            <span>技术部　主管</span>
+        </div>
+    </div>
+    <div class="userList">
+        <ul>
+            <li><a href="javascript:;"><i class="nb-icon ng-fl">&#xe620;</i><b class="ng-fl">消息</b><span class="ng-fr nb-icon">&#xe61d;</span></a></li>
+            <li><a href="javascript:;"><i class="nb-icon ng-fl">&#xe6a3;</i><b class="ng-fl">个人信息</b><span class="ng-fr nb-icon">&#xe61d;</span></a></li>
+            <li id="changePassword"><a href="javascript:;"><i class="nb-icon ng-fl" style="font-size:20px">&#xe619;</i><b class="ng-fl">密码修改</b><span class="ng-fr nb-icon">&#xe61d;</span></a></li>
+            <li><a href="javascript:;"><i class="nb-icon ng-fl">&#xe606;</i><b class="ng-fl">我的二维码</b><span class="ng-fr nb-icon">&#xe61d;</span></a></li>
+        </ul>
+    </div>
+    <div id="backKey" class="resiont-out">
+        返回
+    </div>
+    <div id="back" class="resiont-out">
+        退出登录
+    </div>
+   
+</body>	
+<script src="common/lib/jquery-2.1.4.js"></script>
+<script src="js/mui.min.js"></script>
+<script src="common/js/common.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+mui.init()
+mui.back = function () {
+				window.location.href = "menu.html"
+		}
+$("#backKey").click(function () {
+	window.location.href = "menu.html"
+});
+
+//请求个人信息的数据
+$.ajax({
+	url: selectMyUserById+localStorage.id,
+	type: "get",
+	dataType: "json",
+	
+	success: function (res) {
+		if(res.code == 200){
+			
+			res = res.data
+			
+			//名字
+			$(".user-msg p").html(res.realname)
+			//职位
+			var description = '';
+			if(res.description == 0) {
+				description = '最高管理员'
+			}else if(res.description == 1){
+				description = '区管理员'
+			}else if(res.description == 2){
+				description = '镇管理员'
+			}else if(res.description == 3){
+				description = '村管理员'
+			}else if(res.description == 4){
+				description = '村民'
+			}
+			$(".user-msg span").html(description);
+			
+			if(res.image){
+				//头像
+				$(".user-msg div").css({overflow:"hidden"});
+				$(".user-msg div").css({ background:"url("+res.image+") no-repeat right top/ 100% 100%"});
+			}
+			
+		}else{
+			plus.nativeUI.toast(res.msg)
+		}
+		
+	
+	},
+	headers:{
+		token:localStorage.token
+	}
+})
+//点击修改图片
+mui("body").on("click","#back",function () {
+	
+			localStorage.user = ""
+			window.location.href = "index.html"
+		})
+</script>
+<!--上传图片-->
+<script type="text/javascript">
+  function plusReady() {
+  		mui("body").on("click",".user-msg div",function(){
+			//得到选中路径
+			galleryImgs(function (path) {
+				//展示到页面
+				$(".user-msg div").css({ background:"url("+path+") no-repeat right top/ 100% 100%"});
+				
+				var imgObj = new Image();
+				imgObj.height = $(document).height()
+				imgObj.width = $(document).width()
+				imgObj.src = path;
+				imgObj.onload = function () {
+				
+					var upImgBase64 = getBase64Image(imgObj);
+					$.ajax({
+						type:"post",
+						url:updateUserImageById,
+						async:true,
+						headers:{
+							token:localStorage.token
+						},
+						data:{
+							id:localStorage.id,
+							image:upImgBase64
+						},
+						success:function(res){
+
+						}
+					});
+					
+				}
+				
+			});
+		})
+		
+		function galleryImgs(clallback) {  
+		    plus.gallery.pick(function(e) {  
+		       clallback(e)
+		//      mui('#picture').popover('toggle');  
+		    }, function(e) {  
+		    	 clallback(e)
+		        //outSet( "取消选择图片" );  
+		    }, {  
+		        filter: "image"  
+		    });  
+		}
+  }
+  if(window.plus){
+  	plusReady()
+  }
+  document.addEventListener("plusready",plusReady)
+  
+  function getBase64Image(img) {
+		         var canvas = document.createElement("canvas");
+		         canvas.width = img.width;
+		         canvas.height = img.height;
+		       	 var ctx = canvas.getContext("2d");
+		         ctx.drawImage(img, 0, 0,img.width,img.height);
+		         var dataURL = canvas.toDataURL("image/png");
+		         return dataURL
+		    }
+</script>
+
+<!--跳转修改密码页面页面-->
+<script type="text/javascript">
+	$("#changePassword").on('click',function () {
+		window.location.href = "changePassword.html"
+	})
+</script>
+</html>

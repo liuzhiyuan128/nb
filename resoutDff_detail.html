@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title>未督办</title>
+		<link rel="stylesheet" href="common/css/jquery-weui.min.css">
+		<link rel="stylesheet" href="common/lib/weui.min.css">
+		<link rel="stylesheet" href="common/css/check.css">
+		<link rel="stylesheet" href="common/css/main.css">
+		<link rel="stylesheet" href="common/layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+	
+		<style>
+			.qr_btn {
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				overflow: hidden;
+				top: 10px;
+				right: 10px;
+			}
+			
+			
+			/*.layui-layer-hui{
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50% ,-50%);
+			}*/
+			
+			.yourclass{
+				width: 100%;
+			}	
+			.alert{
+				top:178px !important;
+				display: none;
+			}
+			/*body{
+    		width: 100%;
+    		position: fixed;
+    		top: 0;
+    		left: 0;
+    	}*/
+    	#dbjs{
+    		background: #fff !important;
+    		color:rgba(62, 147, 233, 1)!important;
+    		border: 1px solid rgba(62, 147, 233, 1)!important;;
+    	}
+    	.nb-fixed-header h1{
+    			
+    	}
+    	
+    	
+    	
+		</style>
+	</head>
+
+	<body ontouchstart class="nb-body" style="background:#e5e8e9">
+		<div class="nb-fixed-header">
+			<a id="back">
+				<i class="nb-icon">&#xe61d;</i>
+			</a>
+			<h1>查看详情</h1>
+		</div>
+
+		<div class="nb-form-group nb-form-group1 m-40">
+			<form id="target" class="layui-form">
+
+				<div class="nb-title">
+					<span class="nb-title-span ng-fl">
+                  		  基本信息
+               		</span>
+				</div>
+				<div class="nb-item-wrapper">
+					<div class="nb-show-ranking">
+						<ul class="loading_list">
+							<li >
+								<div class="nb-show-ranking-title nb-show-ranking-title2">
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-6">
+											<h1>堆肥房名称</h1>
+											<span>哈哈哈</span>
+											<input type="hidden" name="compostingAdress">
+										</dd>
+									</dl>
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-3">
+											<h1>房长姓名</h1>
+											<span>1qq</span>
+											<input type="hidden" name="responsibleName">
+										</dd>
+										<dd class="nb-flex nb-flex-3">
+											<h1>服务人口</h1>
+											<span>111</span>
+											<input type="hidden" name="servicePopulation">
+										</dd>
+									</dl>
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-3">
+											<h1>联系电话</h1>
+											<span>15214568970</span>
+											<input type="hidden" name="responsiblePhone">
+										</dd>
+										<dd class="nb-flex nb-flex-3">
+											<h1>服务模式</h1>
+											<span>王**</span>
+											<input type="hidden" name="compostingModel">
+										</dd>
+									</dl>
+									
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-4">
+											<h1>评分</h1>
+										</dd>
+										<dd class="nb-flex nb-flex-5">
+											<h1>月总分</h1>
+											<span class="color_Red">111分</span>
+											<input type="hidden" name="totalMonth">
+										</dd>
+										<dd class="nb-flex nb-flex-5">
+											<h1>季总分</h1>
+											<span class="color_Red">111分</span>
+											<input type="hidden" name="totalQuarter">
+										</dd>
+										<dd class="nb-flex nb-flex-5">
+											<h1>年总分</h1>
+											<span class="color_Red">111分</span>
+											<input type="hidden" name="totalYear">
+										</dd>
+									</dl>
+									
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="nb-title">
+					<span class="nb-title-span ng-fl">
+                    评分
+                </span>
+				</div>
+				<div class="nb-form-group-list weui-cells weui-cells_form" style="margin-top:0">
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">堆肥情况</label>
+						</div>
+						<div class="weui-cell__bd">
+							<div class="score" id="score1">
+								<ul>
+									<li><i class="nb-icon" data-num="10" data-score="好">&#xe8db;</i></li>
+									<li><i class="nb-icon" data-num="0" data-score="中">&#xe8da;</i></li>
+									<li><i class="nb-icon" data-num="-10" data-score="差">&#xe8dc;</i></li>
+								</ul>
+								<span class="tiptool"></span>
+								<input name="hlfl" type="hidden" id="hlfl">
+							</div>
+
+						</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">设施管理</label>
+						</div>
+						<div class="weui-cell__bd">
+							
+							<div class="score" id="score2">
+								<ul>
+									<li><i class="nb-icon" data-num="5" data-score="好">&#xe8db;</i></li>
+									<li><i class="nb-icon" data-num="0" data-score="中">&#xe8da;</i></li>
+									<li><i class="nb-icon" data-num="-5" data-score="差">&#xe8dc;</i></li>
+								</ul>
+								<span class="tiptool" style="display:block;"></span>
+								<input name="tyws" type="hidden" id="tyws">
+							</div>
+						</div>
+					</div>
+					<div class="cheked sfkt">
+						<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">周边卫生</label>
+						</div>
+						<div class="weui-cell__bd">
+							
+							<div class="score" id="score3">
+								<ul>
+									<li><i class="nb-icon" data-num="5" data-score="干净">&#xe8db;</i></li>
+									<li><i class="nb-icon" data-num="0" data-score="空桶">&#xe8da;</i></li>
+									<li><i class="nb-icon" data-num="-5" data-score="较脏">&#xe8dc;</i></li>
+								</ul>
+								<span class="tiptool" style="display:block;"></span>
+								<input name="sfkt" type="hidden" id="tyws">
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="cheked sfkt">
+						<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">庭院卫生</label>
+						</div>
+						<div class="weui-cell__bd">
+							
+							<div class="score" id="score4">
+								<ul>
+									<li><i class="nb-icon" data-num="5" data-score="干净">&#xe8db;</i></li>
+									<li><i class="nb-icon" data-num="0" data-score="空桶">&#xe8da;</i></li>
+									<li><i class="nb-icon" data-num="-5" data-score="较脏">&#xe8dc;</i></li>
+								</ul>
+								<span class="tiptool" style="display:block;"></span>
+								<input name="tyws" type="hidden" id="tyws">
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">当日进量</label>
+						</div>
+						<div class="weui-cell__bd" style="position: relative;">
+							<input disabled="disabled" tyle="padding-right: 28px;" id="intrdayWeight" class="weui-input" type="number" value="" placeholder="" name="intrdayWeight">
+							<div style="position: absolute; right: 0; top: 0; font-size: 14px;height: 24px;line-height: 24px;color:#999;">
+								千克
+							</div>
+						</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">累计进量</label>
+						</div>
+						<div class="weui-cell__bd" style="position: relative;">
+							<input disabled="disabled" style="padding-right: 28px;" id="totalWeight" class="weui-input" type="number" value="" placeholder="" name="totalWeight">
+							<div style="position: absolute; right: 0; top: 0; font-size: 14px;height: 24px;line-height: 24px;color:#999;">
+								吨
+							</div>
+						</div>
+					</div>
+					<div class="weui-cell" style="position: relative;">
+						<div class="weui-cell__hd" style="color: #999;font-size: 14px;line-height: 0;height: 45px;">
+
+							<label for="" class="weui-label">出肥情况</label>
+						</div>
+						<div style="" class="weui-cell__bd">
+
+							<div class="weui-cell__bd" style="position: relative;padding: 5px 0;">
+								<div class="weui-cell__hd" style="color: #999;font-size: 14px;">
+									<label style=" width: 36px;" for="" class="weui-label">日期</label>
+								</div>
+								<div style="position: absolute;top: 0;padding-left: 36px;">
+									<input disabled="disabled" id="cfsj" class="weui-input" type="text" value="" placeholder="" name="cfsj">
+								</div>
+							</div>
+							<div class="weui-cell__bd" style="position: relative;padding: 5px 0;">
+								<div class="weui-cell__hd" style="color: #999;font-size: 14px;">
+									<label style=" width: 36px;" for="" class="weui-label">重量</label>
+								</div>
+								<div style="position: absolute;top: 0;padding-left: 36px;">
+									<input disabled="disabled" id="weight" class="weui-input" type="number" value="" placeholder="" name="weight">
+									<div style="position: absolute; right: 0; top: 0; font-size: 14px;height: 24px;line-height: 24px;color:#999;">
+										吨
+									</div>
+								</div>
+							</div>
+							<div class="weui-cell__bd" style="position: relative; padding: 5px 0;">
+								<div class="weui-cell__hd" style="color: #999;font-size: 14px;">
+									<label style=" width: 36px;" for="" class="weui-label">去向</label>
+								</div>
+								<div style="position: absolute;top: 0;padding-left: 36px;">
+									<input disabled="disabled" id="cfqx" class="weui-input" type="text" value="" placeholder="" name="cfqx">
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+				<div class="nb-title">
+					<span class="nb-title-span ng-fl">
+                    	文字／图片信息
+                </span>
+				</div>
+				<div class="weui-cells weui-cells_form" style="margin-top:0">
+					<div class="weui-cell">
+						<div class="weui-cell__bd">
+							<textarea class="weui-textarea" placeholder="" rows="3" name="bz" disabled="disabled"></textarea>
+						</div>
+					</div>
+					<div class="nb-form-group-list weui-cells weui-cells_form">
+						<div class="weui-cell__bd" style="margin-top:10px;">
+                        <div class="weui-uploader">
+                            <div class="weui-uploader__bd">
+                                <ul class="weui-uploader__files" id="uploaderFiles">
+                                </ul>
+                                 
+                            </div>
+                        </div>
+                    </div>
+					</div>
+					<div id="zgyj">
+					<div class="nb-title">
+						<span class="nb-title-span ng-fl">
+	                 	   整改意见
+	                </span>
+					</div>
+					<div class="weui-cells weui-cells_form" style="margin-top:0">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="请输入文本" rows="3" name="zgyj" disabled="disabled"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="fkyj">
+					<div class="nb-title">
+						<span class="nb-title-span ng-fl">
+	                 	   反馈意见
+	                </span>
+					</div>
+					<div class="weui-cells weui-cells_form" style="margin-top:0">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea " placeholder="请输入文本" rows="3" name="fkyj" disabled="disabled"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="upImgBox">
+					<div class="nb-form-group-list weui-cells weui-cells_form">
+						<div class="weui-cell__bd" style="margin-top:10px;">
+	                        <div class="weui-uploader">
+	                            <div class="weui-uploader__bd">
+	                                <ul class="weui-uploader__files" id="uploaderFiles2">
+	                                </ul>
+	                                <div class="weui-uploader__input-box">
+                                 	<span id="uploaderInput" class="weui-uploader__input">
+                                 		
+                                 	</span>
+                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+				
+	          		 </div>
+				</div>
+			</form>
+			<div id="duban">
+				<div id="btn">
+					<button id="hurryDo" class="layui-btn layui-btn-normal">提交</button>
+				</div>
+			</div>
+		</div>
+		<div class="mask-item"></div>
+		<div class="layui-layer layui-layer-dialog alert" id="layui-layer3" type="dialog" times="3" showtime="0" contype="string" style="z-index: 19891017; top: 236px; left: 50px;"><div class="layui-layer-title" style="cursor: move;">督办结束时间</div><div id="" class="layui-layer-content"><input type="text" class="layui-input" id="date" ata-toggle='date' placeholder="请输入结束时间" lay-key="2"></div><span class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a></span><div class="layui-layer-btn layui-layer-btn-"><a class="layui-layer-btn0">确认</a></div><span class="layui-layer-resize"></span></div>
+		</div><div id="imgBox">
+	    	<img src=""/>
+	    </div>
+	</body>
+	<script src="common/lib/jquery-2.1.4.js"></script>
+	<script src="common/lib/fastclick.js"></script>
+	<script src="common/js/jquery-weui.js"></script>
+	<script src="common/js/jquery.cform.min.js"></script>
+	<script src="common/js/swiper.js"></script>
+	<script src="common/layui/layui.all.js"></script>
+	<script src="common/js/main.js"></script>
+	<script src="common/js/common.js"></script>
+	<script src="common/lib/qrcode.lib.min.js" charset="GB2312"></script>
+	<script src="common/lib/qrcode.js" charset="GB2312"></script>
+	<script src="js/mui.min.js"></script>
+	
+
+	<script>
+
+		FastClick.attach(document.body);
+	
+		var num1 = '',
+			num2 = '';
+		layui.use(['form', 'layedit', 'laydate'], function() {
+			
+
+			var form = layui.form,
+				layer = layui.layer,
+				laydate = layui.laydate;
+
+			//回填表单
+			var Id = $.getQueryString("id");
+			
+			
+			var checkCompostingId = $.getQueryString("checkCompostingId");
+			
+			var sign = $.getQueryString("sign");
+		
+			
+			if(sign == 1) {
+				$("#btn").hide();
+				$(".weui-uploader__input-box").hide()
+			}
+		
+
+			var tokens = localStorage.token;
+			$("#hurryDo").click(function () {
+				
+				var w = plus.nativeUI.showWaiting()
+				var feedbackImage = "";
+								$("#upImgBox .bigOrSmall").each(function () {
+									 feedbackImage += ($(this).attr("data-url")+"&")
+								})
+								feedbackImage = feedbackImage.substr(0,feedbackImage.length-1);
+					
+								$.ajax({
+									headers:{token:localStorage.token},
+									type:"POST",
+									url:updateAfterThreeDays,
+									data:{
+										checkCompostingId:checkCompostingId,
+										feedbackImage:feedbackImage,
+										fkyj:$("#fkyj textarea").val()
+									},
+									async:true,
+									
+									
+									success:function (data){
+										
+
+										if(data.code==200){
+											w.close()
+											layer.msg("提交成功")
+											setTimeout(function () {
+												window.location.href = "dffResout.html"
+											},1000)
+										}else{
+											layer.msg(data.msg)
+										}
+//										if(data>0){
+////											layer.msg("提交成功");
+//											window.location.href = "khdb.html?duban=d"
+//										}else{
+//											layer.msg("提交失败")
+//										}
+									}
+								});
+								return false;
+
+			})
+			
+			if(Id) {
+			
+				$.ajax({
+					url:selectCompostingScore+Id+"/"+checkCompostingId,
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader("TOKEN", localStorage.token);
+					},
+					async:false,
+					type:"get",
+					success:function (data) {
+						
+						if(data.code == 200){
+							$('#target').formEdit(data.data);
+						}else{
+							plus.nativeUI.toast(data.msg)
+						}
+					}
+					
+				})
+				$.ajax({
+					url: selectByPrimaryKey + Id,
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader("TOKEN", tokens);
+					},
+					async:false,
+					success: function(data) {
+					
+						if(data.code != 200){
+							plus.nativeUI.toast(data.msg)
+							return false;
+						}
+						
+						data = data.data
+//						console.log(JSON.stringify(data))
+
+						
+							
+						
+
+						var editForm = data;
+						
+						
+						if(editForm.sfkt == 5) {
+							$("#score3 li:eq(0)").addClass("active");
+
+						} else if(editForm.sfkt == 0) {
+							
+							$("#score3 li:eq(1)").addClass("active")
+						} else if(editForm.sfkt == -5){
+							$("#score3 li:eq(2)").addClass("active")
+						}
+						
+						$('#target').formEdit(editForm);
+						form.render('radio');
+						$(".nb-show-ranking-title2 dl dd").each(function() {
+							var that = $(this);
+							var text = that.find("input[type='hidden']").val();
+							that.find("span").html(text);
+						})
+						
+
+					}
+				})
+				
+				
+
+			}
+			if(checkCompostingId) {
+				
+				$.ajax({
+					url: selectCheckCompostingDetail + checkCompostingId,
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader("TOKEN", tokens);
+					},
+					success: function(res) {
+						if(res.code != 200){
+							layer.msg(res.msg)
+							return false;
+						}
+						var imageUrl = res.data.checkImage
+						
+						if(imageUrl){
+							imageUrl = imageUrl.substring(0, imageUrl.length - 1);
+				
+							var imgs = imageUrl.split("&");
+							for(var i = 0; i < imgs.length; i++) {
+								
+								
+								$("#uploaderFiles").append('<li style="position:relative;" class="bigOrSmall weui-uploader__file" data-url="'+imgs[i]+'"> <img style="width:100%;height:100%" src="'+imgs[i]+'"/> </li>')
+							}
+							
+						}
+						var feedbackImage = res.data.feedbackImage
+						if(feedbackImage){
+							feedbackImage = feedbackImage.substring(0, feedbackImage.length - 1);
+
+							var imgs = feedbackImage.split("&");
+							for(var i = 0; i < imgs.length; i++) {
+								
+								
+								$("#uploaderFiles2").append('<li style="position:relative;" class="bigOrSmall weui-uploader__file" data-url="'+imgs[i]+'"> <img style="width:100%;height:100%" src="'+imgs[i]+'"/> <span style="position: absolute;top: 0px;right: 0;" class="del mui-icon mui-icon-closeempty"></sapn></li>')
+								$("#uploaderFiles2 .del").on("click",function(){
+			            	
+			            	$(this).parent().remove();
+			            })
+							}
+							
+						}
+						res = res.data
+						
+						
+							if(sign != 0){
+								$("#fkyj textarea").removeAttr("disabled");
+							}
+						
+							if(res.zgyj == null){
+								$("#zgyj").hide();
+							}
+						
+						var editForm = res;
+						if(editForm.dfqk == 10) {
+							$("#score1 li:eq(0)").addClass("active");
+
+						} else if(editForm.dfqk == 0) {
+							$("#score1 li:eq(1)").addClass("active")
+						} else if(editForm.dfqk == -10){
+							$("#score1 li:eq(2)").addClass("active")
+						}
+						if(editForm.ssgl == 5) {
+							$("#score2 li:eq(0)").addClass("active")
+						} else if(editForm.ssgl == 0) {
+							$("#score2 li:eq(1)").addClass("active")
+						} else if(editForm.ssgl == -5){
+							$("#score2 li:eq(2)").addClass("active")
+						}
+						if(editForm.zbws == 5) {
+							$("#score3 li:eq(0)").addClass("active")
+						} else if(editForm.zbws == 0) {
+							$("#score3 li:eq(1)").addClass("active")
+						} else if(editForm.zbws == -5){
+							$("#score3 li:eq(2)").addClass("active")
+						}
+						if(editForm.tyws == 5) {
+							$("#score4 li:eq(0)").addClass("active")
+						} else if(editForm.tyws == 0) {
+							$("#score4 li:eq(1)").addClass("active")
+						} else if(editForm.tyws == -5){
+							$("#score4 li:eq(2)").addClass("active")
+						}
+						
+						
+				
+						$('#target').formEdit(editForm);
+						form.render('radio');
+
+						$(".nb-show-ranking-title2 dl dd").each(function() {
+							var that = $(this);
+							var text = that.find("input[type='hidden']").val();
+							that.find("span").html(text)
+						})
+					}
+				})
+			}
+		})
+		
+		
+	</script>
+	<!--后退功能-->
+	<script type="text/javascript">
+		mui.init();
+		var index = $.getQueryString("index")
+		mui.back = function () {
+			window.location.href = "dffResout.html?index="+index
+		}
+		$("#back").click(function () {
+			window.location.href = "dffResout.html?index="+index
+		})
+
+	</script>
+	<!--上传图片-->
+	<script type="text/javascript">
+		function plusReady(){  
+	 
+                // 弹出系统选择按钮框  
+                mui("body").on("tap","#uploaderInput",function(){  
+                    page.imgUp();
+                })
+                mui.back = function () {
+                	window.location.href = "menu.html"
+                }
+   
+            }  
+            var page=null;  
+            page={  
+                imgUp:function(){  
+                    var m=this; 
+                    if(mui('#upImgBox .weui-uploader__file').length > 2) return mui.toast("达到最大上传数");
+                    plus.nativeUI.actionSheet({cancel:"取消",buttons:[  
+                        {title:"拍照"},  
+                     
+                    ]}, function(e){//1 是拍照  2 从相册中选择  
+                        switch(e.index){  
+                            case 1:appendByCamera();break;  
+//                          case 2:appendByGallery();break;  
+                        }  
+                    });  
+                }  
+                //摄像头  
+            }  
+		         // 拍照添加文件
+            function appendByCamera(){
+            	
+                plus.camera.getCamera().captureImage(function(e){
+                    //解决三张图片的问题
+                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+//                  if($("#update img").length>3) return false
+
+                   	  var path = entry.toLocalURL();
+                  	var img = new Image();
+                  	
+                  	
+                   	img.src = path;
+                   	img.setAttribute("crossOrigin", 'Anonymous')
+                   	img.width = window.innerWidth;
+                   	img.height = window.innerHeight;
+                 
+               
+//                 	$("#update").append(img);
+                   	
+                   img.onload = function () {
+						var base64 = getBase64Image(img)
+						
+						 var html = '';
+			            html += '<div style="float: left;">';
+			            html += '<div style="display: none;"></div>';
+			            html += '</div>';
+			            $("#uploaderFiles2").append(html);
+			            $("#uploaderFiles2").children().eq($("#uploaderFiles2").children().length - 1).children().eq(0).append($("#fileBtn").clone());
+			            $("#uploaderFiles2").children().eq($("#uploaderFiles2").children().length - 1).children().eq(0).children().eq(0).attr("id", "").removeAttr("onchange");
+			            html = "";
+			           					
+			            html += '<li style="position:relative;" class="bigOrSmall weui-uploader__file" data-url="'+base64+'"> <img style="width:100%;height:100%" src="'+path+'"/> <span style="position: absolute;top: 0px;right: 0;" class="del mui-icon mui-icon-closeempty"></sapn></li>';
+			            // html += '<button class="img_delete">删除</button>';
+			            $("#uploaderFiles2").children().last().append(html);
+			            $(".del").unbind("clcik");
+			            $(".del").on("click",function(){
+			            	
+			            	$(this).parent().remove();
+			            })
+			          
+			            
+						
+						
+			           
+			       
+                   }
+                   
+
+                    }, function(e) { 
+                        mui.toast("读取拍照文件错误" ); 
+                    }); 
+    
+                });    
+            }
+             function getBase64Image(img) {
+		         var canvas = document.createElement("canvas");
+		          canvas.width = img.width;
+		         canvas.height = img.height;
+		        var ctx = canvas.getContext("2d");
+		         ctx.drawImage(img, 0, 0,img.width,img.height);
+		         var dataURL = canvas.toDataURL("image/png");
+		         
+		          return dataURL
+		    }
+             
+            
+ 
+            if(window.plus){  
+                plusReady();  
+            }else{  
+            
+                document.addEventListener("plusready",plusReady,false);  
+            } 
+	</script>
+	<script type="text/javascript">
+		$("body").on("click",".bigOrSmall",function(e){
+
+							//获取鼠标在屏幕中当前点击的位置					
+							var x = e.clientX;
+							var y = e.clientY;
+							
+							$("#imgBox").css({position:'fixed',left:x,top:y,zIndex:9999999}).
+							
+							children().css({width:"100%",height:"100%"}).
+							
+							attr("src",$(this).children("img").attr("src"));
+							
+
+							$("#imgBox").animate({width:window.innerWidth,height:window.innerHeight,top:0,left:0,backgroundSize:"100%"},"fast")
+
+						
+							 $("#imgBox").click(function () {
+									$(this).animate({width:0,height:0,top:y,left:x},"fast")
+									$(this).unbind("click")
+								})
+
+							
+						});
+	</script>
+
+
+</html>

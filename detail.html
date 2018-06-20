@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>考核抽查</title>
+    <link rel="stylesheet" href="common/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="common/lib/weui.min.css">
+    <link rel="stylesheet" href="common/css/check.css">
+    <link rel="stylesheet" href="common/css/main.css">
+    <link rel="stylesheet" href="common/layui/css/layui.css">
+    <style>
+        .qr_btn{
+            position: absolute;
+            width:30px;
+            height:30px;
+            overflow: hidden;
+            top:10px;
+            right:10px;
+        }
+    </style>
+</head>
+<body ontouchstart class="nb-body" style="background:#e5e8e9">
+   <div class="nb-fixed-header">
+        <a href="index.html">
+            <i class="nb-icon">&#xe61d;</i>
+        </a>
+        <h1>考核抽查</h1>
+   </div>
+
+    <div class="nb-form-group m-40">
+        <form id="target" class="layui-form">
+            <div class="nb-form-group-list weui-cells weui-cells_form m-2">
+                <div class="weui-cell"  id="erweima" style="position:relative">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">垃圾桶编号</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="trashId" type="text" id="bh" value="" placeholder="">
+                    </div>
+                    <a href="javascript:;" node-type="qr-btn" class="qr_btn">
+                        <i class="nb-icon">&#xe606;</i>
+                        <input node-type="jsbridge" type="file" value="扫描二维码2"  capture="camera" accept="image/*" style="opacity:0">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="nb-title">
+                <span class="nb-title-span ng-fl">
+                    基本信息
+                </span>
+                <span class="nb-title-span other-msg ng-fr">
+                    其他住户信息
+                    <i class="nb-icon">&#xe61b;</i>
+                    
+                </span>
+               
+            </div>
+            <div class="other-conteriner">
+                <ul class="other-name">
+                </ul>
+                <dl>
+                    <dd>
+                        <a href="javascript:;">
+                            <i class="nb-icon" style="font-size:24px">
+                                 &#xe8cf;
+                            </i>
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">
+                            <i class="nb-icon">
+                                 &#xe60d;
+                            </i>
+                        </a>
+                    </dd>
+                </dl>
+            </div>
+            <div class="nb-form-group-list weui-cells weui-cells_form" style="margin-top:0">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">住户姓名</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" value="" placeholder=""  name="userName">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">人口数</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="number" value="" placeholder="" name="familyNums">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">联系电话</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="number" type="tel" value="" placeholder="" name="phone">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">联系党员</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" value="" placeholder="" name="connect">
+                        <input class="weui-input" type="hidden" value="" placeholder="" name="usersId" id="usersId">
+                    </div>
+                </div>
+                <div class="cheked">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label for="" class="weui-label">是否常住</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input type="radio" name="aways"  value="1" title="是">
+                           
+                            <input type="radio" name="aways" value="0" title="否">
+                            
+                        </div>
+                    </div>
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label for="" class="weui-label">是否党员</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input type="radio" name="partyMember"  value="1" title="是">
+                            <input type="radio" name="partyMember" value="0" title="否">
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nb-title">
+                <span class="nb-title-span ng-fl">
+                    评分
+                </span>
+            </div>
+            <div class="nb-form-group-list weui-cells weui-cells_form" style="margin-top:0">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">合理分类</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <div class="score" id="score1">
+                            <ul>
+                                <li><i class="nb-icon" data-num="1" data-score="好">&#xe8db;</i></li>
+                                <li><i class="nb-icon" data-num="0" data-score="中">&#xe8da;</i></li>
+                                <li><i class="nb-icon" data-num="-1" data-score="差">&#xe8dc;</i></li>
+                            </ul>
+                            <span class="tiptool"></span>
+                            <input name="hlfl" type="hidden">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">庭院卫生</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <div class="score" id="score2">
+                            <ul>
+                                <li><i class="nb-icon" data-num="1" data-score="好">&#xe8db;</i></li>
+                                <li><i class="nb-icon" data-num="0" data-score="中">&#xe8da;</i></li>
+                                <li><i class="nb-icon" data-num="-1" data-score="差">&#xe8dc;</i></li>
+                            </ul>
+                            <span class="tiptool"></span>
+                            <input name="tyws" type="hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="cheked sfkt">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label for="" class="weui-label">是否空桶</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input type="radio" name="sfkt" value="1" title="是">
+                            <input type="radio" name="sfkt" value="0" title="否">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nb-title">
+                <span class="nb-title-span ng-fl">
+                    上传图片/反馈
+                </span>
+            </div>
+            <div class="weui-cells weui-cells_form" style="margin-top:0">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <textarea class="weui-textarea" placeholder="请输入文本" rows="3" name="bz"></textarea>
+                    </div>
+                </div>
+                <div class="nb-form-group-list weui-cells weui-cells_form">
+                    <div class="weui-cell__bd" style="margin-top:10px;">
+                        <div class="weui-uploader">
+                            <div class="weui-uploader__bd">
+                                <ul class="weui-uploader__files" id="uploaderFiles">
+                                </ul>
+                                <div class="weui-uploader__input-box">
+                                    <input id="uploaderInput" class="weui-uploader__input" name="file"  type="file"  onchange="upload('#uploaderInput');"  capture="camera" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cheked">
+                <div class="nb-form-group-list weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label for="" class="weui-label">是否督办</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-cell__bd">
+                                <input type="radio" name="issupervision" value="1" title="是">
+                                <input type="radio" name="issupervision" value="0" title="否">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1">立即提交</button>
+        </form>
+    </div>
+    <div class="mask-item"></div>
+</body>
+<script src="common/lib/jquery-2.1.4.js"></script>
+<script src="common/lib/fastclick.js"></script>
+<script src="common/js/jquery-weui.js"></script>
+<script src="common/js/jquery.cform.min.js"></script>
+<script src="common/js/swiper.js"></script>
+<script src="common/layui/layui.all.js"></script>
+<script src="common/js/main.js"></script>
+<script src="common/js/common.js"></script>
+<script src="common/lib/qrcode.lib.min.js" charset="GB2312"></script>
+<script src="common/lib/qrcode.js" charset="GB2312"></script>
+<script>
+    FastClick.attach(document.body);
+    scoreForm("score1")
+    scoreForm("score2")
+    Qrcode.init($('[node-type=qr-btn]'));
+    var upload = function (c) {
+        "use strict";
+        var $c = document.querySelector(c),
+            file = $c.files[0],
+            reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            console.log(e)
+            var html = '';
+            html += '<div style="float: left;">';
+            html += '<div style="display: none;"></div>';
+            html += '</div>';
+            $("#uploaderFiles").append(html);
+            $("#uploaderFiles").children().eq($("#uploaderFiles").children().length - 1).children().eq(0).append($("#fileBtn").clone());
+            $("#uploaderFiles").children().eq($("#uploaderFiles").children().length - 1).children().eq(0).children().eq(0).attr("id", "").removeAttr("onchange");
+            html = "";
+
+            html += '<li class="weui-uploader__file" data-url="' + e.target.result + '" style="background-image:url(' + e.target.result + ')"></li>';
+            // html += '<button class="img_delete">删除</button>';
+            $("#uploaderFiles").children().last().append(html);
+        };
+    };
+    $('.other-msg').click(function (e) {
+        $(".other-conteriner").show();
+        $(".mask-item").show()
+        e.stopPropagation();
+    });
+    $(".mask-item").click(function () {
+        $(".other-conteriner").hide();
+        $(this).hide()
+    });
+    var num1 = '',
+        num2 = '';
+    $("#score1 ul li").click(function(){
+        var index=$(this).find('i').data('num');
+        num1=$(this).find('i').data('num');
+    })
+    $("#score2 ul li").click(function () {
+            var index = $(this).find('i').data('num');
+            num2 = $(this).find('i').data('num');
+        })
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        
+        var form = layui.form
+            , layer = layui.layer;
+            
+        form.on('submit(demo1)', function (data) {
+            var inputCheck = $('.weui-uploader__files').find("li.weui-uploader__file");
+            var imageUrl = "";
+            for (var i = 0; i < inputCheck.length; i++) {
+                imageUrl += $(inputCheck[i]).data("url") + "&";
+            }
+            if (imageUrl != "") {
+                imageUrl = imageUrl.substring(0, imageUrl.length - 1);
+            }
+            data.field.tyws = num2;
+            data.field.hlfl = num1;
+            var totals =""
+            totals +=parseInt(data.field.hlfl)+ parseInt(data.field.tyws) + parseInt(data.field.sfkt);
+            var urls = { "image": imageUrl, "total": totals };
+            var json = eval('(' + (JSON.stringify(data.field) + JSON.stringify(urls)).replace(/}{/, ',') + ')');
+            console.log(json.image)
+            // $.ajax({
+            //     contentType: 'application/json; charset=UTF-8',
+            //     //contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            //     url: insertCheckInfo,
+            //     type:'post',
+            //     data: JSON.stringify(json),
+            //     dataType:'json',
+            //     success:function(data){
+            //     }
+            // })
+            return false;
+        });
+        //回填表单
+        // $.ajax({
+        //     url:'common/mock/mock.json',
+        //     success:function(data){
+        //         var editForm= data.data[0]
+        //         $('#target').formEdit(editForm);
+        //         form.render('radio');
+        //     }
+        // })
+    })
+    
+</script>
+</html>

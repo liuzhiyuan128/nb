@@ -1,0 +1,268 @@
+{
+	"index.html": {
+		"refer": [
+			"menu.html",
+			"index.html",
+			"map.html",
+			"khdb.html"
+		],
+		"resources": []
+	},
+	"menu.html": {
+		"refer": [
+			"inspection.html",
+			"ranking.html",
+			"khdb.html",
+			"user.html",
+			"resoutRest.html",
+			"map.html",
+			"fertilizerHouse.html",
+			"dffdb.html",
+			"rankingDff.html",
+			"dffResout.html",
+			"resoutDff_detail.html",
+			"scavengingPhoto.html",
+			"imglist.html"
+		],
+		"resources": [
+			"images/icon2.png"
+		]
+	},
+	"inspection.html": {
+		"refer": [
+			"demo.html",
+			"khdb.html",
+			"menu.html",
+			"demo1.html",
+			"inspection.html"
+		],
+		"resources": []
+	},
+	"demo.html": {
+		"refer": [
+			"inspection.html"
+		],
+		"resources": [
+			"inspection.html"
+		]
+	},
+	"khdb.html": {
+		"refer": [
+			"menu.html",
+			"wdb_detail.html",
+			"ranking.html",
+			"user.html",
+			"khdb.html"
+		],
+		"resources": []
+	},
+	"ranking.html": {
+		"refer": [
+			"zhen_detail.html",
+			"menu.html",
+			"user.html",
+			"rankMark.html",
+			"map.html",
+			"ranking.html",
+			"townRank.html"
+		],
+		"resources": [
+			"user.html",
+			"menu.html"
+		]
+	},
+	"zhen_detail.html": {
+		"refer": [
+			"ranking.html"
+		],
+		"resources": []
+	},
+	"wdb_detail.html": {
+		"refer": [
+			"khdb.html",
+			"cb.html"
+		],
+		"resources": []
+	},
+	"user.html": {
+		"refer": [
+			"menu.html",
+			"index.html",
+			"ranking.html",
+			"khdb.html",
+			"map.html",
+			"mapSearch.html",
+			"rankingDff.html",
+			"changePassword.html"
+		],
+		"resources": []
+	},
+	"resoutRest.html": {
+		"refer": [
+			"menu.html",
+			"resoutRest_detail.html",
+			"ranking.html",
+			"resoutDff_detail.html",
+			"user.html"
+		],
+		"resources": []
+	},
+	"resoutRest_detail.html": {
+		"refer": [
+			"resoutRest.html",
+			"khdb.html"
+		],
+		"resources": []
+	},
+	"cb.html": {
+		"refer": [
+			"khdb.html",
+			"wdb_detail.html"
+		],
+		"resources": []
+	},
+	"rankMark.html": {
+		"refer": [
+			"ranking.html",
+			"townRank.html",
+			"menu.html",
+			"rankMark_detail.html",
+			"rankMark.html"
+		],
+		"resources": []
+	},
+	"map.html": {
+		"refer": [
+			"user.html",
+			"ranking.html",
+			"menu.html",
+			"mapSearch.html"
+		]
+	},
+	"fertilizerHouse.html": {
+		"refer": [
+			"menu.html",
+			"demo.html",
+			"dffCode.html",
+			"fertilizerHouse.html",
+			"dffdb.html"
+		]
+	},
+	"mapSearch.html": {
+		"refer": [
+			"user.html",
+			"menu.html",
+			"map.html",
+			"ranking.html"
+		]
+	},
+	"dffdb.html": {
+		"refer": [
+			"menu.html",
+			"dffdb_detail.html",
+			"user.html",
+			"ranking.html",
+			"map.html",
+			"dffdb.html"
+		],
+		"resources": [
+			"menu.html"
+		]
+	},
+	"dffdb_detail.html": {
+		"refer": [
+			"khdb.html",
+			"dffdb.html",
+			"cb.html",
+			"menu.html",
+			"dffdb_detail.html",
+			"dffCbOrDb.html"
+		]
+	},
+	"dffCode.html": {
+		"refer": [
+			"inspection.html",
+			"fertilizerHouse.html"
+		]
+	},
+	"townRank.html": {
+		"refer": [
+			"menu.html",
+			"ranking.html",
+			"rankMark.html",
+			"townRank.html",
+			"townRank_detail.html"
+		]
+	},
+	"dffCbOrDb.html": {
+		"refer": [
+			"wdb_detail.html",
+			"dffdb.html",
+			"dffdb_detail.html"
+		]
+	},
+	"resoutDff_detail.html": {
+		"refer": [
+			"menu.html",
+			"resoutRest.html",
+			"dffResout.html"
+		]
+	},
+	"rankingDff.html": {
+		"refer": [
+			"menu.html",
+			"zhen_detail.html",
+			"rankingDff_detail.html",
+			"map.html",
+			"user.html",
+			"rankingDff.html"
+		]
+	},
+	"rankingDff_detail.html": {
+		"refer": [
+			"rankingDff.html"
+		]
+	},
+	"demo1.html": {
+		"refer": [
+			"inspection.html"
+		]
+	},
+	"rankMark_detail.html": {
+		"refer": [
+			"rankMark.html"
+		]
+	},
+	"townRank_detail.html": {
+		"refer": [
+			"townRank.html"
+		]
+	},
+	"dffResout.html": {
+		"refer": [
+			"menu.html",
+			"resoutDff_detail.html"
+		]
+	},
+	"changePassword.html": {
+		"refer": [
+			"user.html",
+			"index.html",
+			"changePassword.html"
+		]
+	},
+	"scavengingPhoto.html": {
+		"refer": [
+			"inspection.html",
+			"menu.html"
+		],
+		"resources": [
+			"menu.html"
+		]
+	},
+	"imglist.html": {
+		"refer": [
+			"menu.html"
+		]
+	}
+}

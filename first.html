@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>Title</title>
+    <link rel="stylesheet" href="common/layui/css/layui.css">
+    <link rel="stylesheet" href="common/lib/weui.min.css">
+    <link rel="stylesheet" href="common/css/jquery-weui.css">
+    <link rel="stylesheet" href="common/css/main.css">
+</head>
+
+<body style="background:#fff" id="loginbody">
+    <div class="loginfram">
+        <h1 class="logo">
+            <img src="common/images/logo.png" alt="">
+        </h1>
+        <form action="" id="form" class="layui-form">
+            <div class="layui-form-item">
+                <!-- <img class="iconfont fl" src="img/wd.svg" style="width:24px;height:24px;margin:11px;"> -->
+                <div class="layui-input-block">
+                    <input type="text" id="userName" name="userName" lay-verify="required" autocomplete="off" placeholder="请输入账号" class="layui-input">
+                    <i class="nb-icon loginIcon">&#xe67f;</i>
+                </div>
+                
+            </div>
+            <div class="layui-form-item">
+                <!-- <img class="iconfont fl" src="img/mm.svg" style="width:24px;height:24px;margin:11px;"> -->
+                <div class="layui-input-block">
+                    <input type="password" id="passWord" name="passWord" lay-verify="required" autocomplete="off" placeholder="请输入密码" class="layui-input">
+                    <i class="nb-icon loginIcon">&#xe64a;</i>
+                </div>
+                
+            </div>
+            <div class="layui-form-item" style="border:none;background:#fff;">
+                <button class="layui-btn" id="submit-btn" lay-submit="" lay-filter="demo1" style="width:100%;background-color: rgba(71, 145, 245, 1);height:44px;line-height:44px">登 录</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="common/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="common/layui/layui.js"></script>
+<script src="common/lib/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="common/js/jquery-weui.js"></script>
+<script src="common/js/common.js"></script>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate,
+            username=$("#userName").val(),
+            password= $("#passWord").val();
+            $("#submit-btn").click(function(){
+            	window.location.href="index.html"
+            })
+        form.on('submit(demo1)', function (data) {
+        $.ajax({
+            url: loginUser,
+            data: { userName: $("#userName").val(), passWord:  $("#passWord").val() },
+            datatype: 'json',
+            method: 'get',
+            success:function (jsonData, statu, xhr){
+                if(jsonData==1){
+                    $.toptip(jsonData.msg, 'error');
+                    window.location.href="index.html"
+                }else{
+                    $.toptip(jsonData.msg, 'success');
+                    window.location.href = "index.html"
+                }            
+            }
+        })
+        return false;
+    });
+})
+</script>
+</html>

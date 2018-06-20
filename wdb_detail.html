@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title>未督办</title>
+		<link rel="stylesheet" href="common/css/jquery-weui.min.css">
+		<link rel="stylesheet" href="common/lib/weui.min.css">
+		<link rel="stylesheet" href="common/css/check.css">
+		<link rel="stylesheet" href="common/css/main.css">
+		<link rel="stylesheet" href="common/layui/css/layui.css">
+	
+		<style>
+			.qr_btn {
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				overflow: hidden;
+				top: 10px;
+				right: 10px;
+			}
+			
+			#btn button {
+				width: 30%;
+			}
+			/*.layui-layer-hui{
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50% ,-50%);
+			}*/
+			
+			.yourclass{
+				width: 100%;
+			}	
+			.alert{
+				top:178px !important;
+				display: none;
+			}
+			/*body{
+    		width: 100%;
+    		position: fixed;
+    		top: 0;
+    		left: 0;
+    	}*/
+    	
+		</style>
+	</head>
+
+	<body ontouchstart class="nb-body" style="background:#e5e8e9">
+		<div class="nb-fixed-header">
+			<a id="back">
+				<i class="nb-icon">&#xe61d;</i>
+			</a>
+			<h1>督办中</h1>
+		</div>
+
+		<div class="nb-form-group nb-form-group1 m-40">
+			<form id="target" class="layui-form">
+
+				<div class="nb-title">
+					<span class="nb-title-span ng-fl">
+                    基本信息
+                </span>
+
+				</div>
+				<div class="nb-item-wrapper">
+					<div class="nb-show-ranking">
+						<ul class="loading_list">
+							<li style="height:140px;">
+								<div class="nb-show-ranking-title nb-show-ranking-title2">
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-6">
+											<h1>垃圾桶编号</h1>
+											<span>1qq</span>
+											<input type="hidden" name="trashId">
+										</dd>
+									</dl>
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-3">
+											<h1>住户姓名</h1>
+											<span>1qq</span>
+											<input type="hidden" name="realname">
+										</dd>
+										<dd class="nb-flex nb-flex-3">
+											<h1>人&nbsp;&nbsp;口&nbsp;数</h1>
+											<span>111</span>
+											<input type="hidden" name="familyNums">
+										</dd>
+									</dl>
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-3">
+											<h1>联系电话</h1>
+											<span>15214568970</span>
+											<input type="hidden" name="phone">
+										</dd>
+										<dd class="nb-flex nb-flex-3">
+											<h1>联系党员</h1>
+											<span>王**</span>
+											<input type="hidden" name="connect">
+										</dd>
+									</dl>
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-3">
+											<h1>是否长住</h1>
+											<span>1qq</span>
+											<input type="hidden" name="aways">
+										</dd>
+										<dd class="nb-flex nb-flex-3">
+											<h1>是否党员</h1>
+											<span>111</span>
+											<input type="hidden" name="partyMember">
+										</dd>
+									</dl>
+									<dl class="clearfix">
+										<dd class="nb-flex nb-flex-4">
+											<h1>评分</h1>
+										</dd>
+										<dd class="nb-flex nb-flex-5">
+											<h1>月总分</h1>
+											<span class="color_Red">111分</span>
+											<input type="hidden" name="totalMonth">
+										</dd>
+										<dd class="nb-flex nb-flex-5">
+											<h1>季总分</h1>
+											<span class="color_Red">111分</span>
+											<input type="hidden" name="totalQuarter">
+										</dd>
+										<dd class="nb-flex nb-flex-5">
+											<h1>年总分</h1>
+											<span class="color_Red">111分</span>
+											<input type="hidden" name="totalYear">
+										</dd>
+									</dl>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="nb-title">
+					<span class="nb-title-span ng-fl">
+                    评分
+                </span>
+				</div>
+				<div class="nb-form-group-list weui-cells weui-cells_form" style="margin-top:0">
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">合理分类</label>
+						</div>
+						<div class="weui-cell__bd">
+							<div class="score" id="score1">
+								<ul>
+									<li><i class="nb-icon" data-num="10" data-score="好">&#xe8db;</i></li>
+									<li><i class="nb-icon" data-num="0" data-score="中">&#xe8da;</i></li>
+									<li><i class="nb-icon" data-num="-10" data-score="差">&#xe8dc;</i></li>
+								</ul>
+								<span class="tiptool"></span>
+								<input name="hlfl" type="hidden" id="hlfl">
+							</div>
+
+						</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">庭院卫生</label>
+						</div>
+						<div class="weui-cell__bd">
+							
+							<div class="score" id="score2">
+								<ul>
+									<li><i class="nb-icon" data-num="5" data-score="好">&#xe8db;</i></li>
+									<li><i class="nb-icon" data-num="0" data-score="中">&#xe8da;</i></li>
+									<li><i class="nb-icon" data-num="-5" data-score="差">&#xe8dc;</i></li>
+								</ul>
+								<span class="tiptool" style="display:block;"></span>
+								<input name="tyws" type="hidden" id="tyws">
+							</div>
+						</div>
+					</div>
+					<div class="cheked sfkt">
+						<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label for="" class="weui-label">状态</label>
+						</div>
+						<div class="weui-cell__bd">
+							
+							<div class="score" id="score3">
+								<ul>
+									<li><i class="nb-icon" data-num="5" data-score="干净">&#xe8db;</i></li>
+									<li><i class="nb-icon" data-num="0" data-score="空桶">&#xe8da;</i></li>
+									<li><i class="nb-icon" data-num="-5" data-score="较脏">&#xe8dc;</i></li>
+								</ul>
+								<span class="tiptool" style="display:block;"></span>
+								<input name="sfkt" type="hidden" id="tyws">
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div class="nb-title">
+					<span class="nb-title-span ng-fl">
+                    	文字／图片信息
+                </span>
+				</div>
+				<div class="weui-cells weui-cells_form" style="margin-top:0">
+					<div class="weui-cell">
+						<div class="weui-cell__bd">
+							<textarea class="weui-textarea" placeholder="" rows="3" name="bz" disabled="disabled"></textarea>
+						</div>
+					</div>
+					<div class="nb-form-group-list weui-cells weui-cells_form">
+						<div class="weui-cell__bd" style="margin-top:10px;">
+							<div class="weui-uploader">
+								<div class="weui-uploader__bd">
+									<ul class="weui-uploader__files" id="uploaderFiles" style="display:block;">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="zgyj">
+					<div class="nb-title">
+						<span class="nb-title-span ng-fl">
+	                 	   整改意见
+	                </span>
+					</div>
+					<div class="weui-cells weui-cells_form" style="margin-top:0">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea" placeholder="请输入文本" rows="3" name="zgyj" disabled="disabled"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<div id="fkyj">
+					<div class="nb-title">
+						<span class="nb-title-span ng-fl">
+	                 	   反馈意见
+	                </span>
+					</div>
+					<div class="weui-cells weui-cells_form" style="margin-top:0">
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<textarea class="weui-textarea " placeholder="请输入文本" rows="3" name="fkyj" disabled="disabled"></textarea>
+							</div>
+						</div>
+
+					</div>
+
+				</div>-->
+				
+				
+                
+               
+            </div>
+			</form>
+			<div id="duban">
+				<div id="btn">
+					<button id="cb" class="layui-btn layui-btn-normal">重办</button>
+					<button id="dbjs" class="layui-btn layui-btn-normal">督办结束</button>
+					<button id="hurryDo" class="layui-btn layui-btn-normal">催办</button>
+				</div>
+			</div>
+		</div>
+		<div class="mask-item"></div>
+		<div class="layui-layer layui-layer-dialog alert" id="layui-layer3" type="dialog" times="3" showtime="0" contype="string" style="z-index: 19891017; top: 236px; left: 50px;"><div class="layui-layer-title" style="cursor: move;">督办结束时间</div><div id="" class="layui-layer-content"><input type="text" class="layui-input" id="date" ata-toggle='date' placeholder="请输入结束时间" lay-key="2"></div><span class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a></span><div class="layui-layer-btn layui-layer-btn-"><a class="layui-layer-btn0">确认</a></div><span class="layui-layer-resize"></span></div>
+		</div><div id="imgBox">
+	    	<img src=""/>
+	    </div>
+	</body>
+	<script src="common/lib/jquery-2.1.4.js"></script>
+	<script src="common/lib/fastclick.js"></script>
+	<script src="common/js/jquery-weui.js"></script>
+	<script src="common/js/jquery.cform.min.js"></script>
+	<script src="common/js/swiper.js"></script>
+	<script src="common/layui/layui.all.js"></script>
+	<script src="common/js/main.js"></script>
+	<script src="common/js/common.js"></script>
+	<script src="common/lib/qrcode.lib.min.js" charset="GB2312"></script>
+	<script src="common/lib/qrcode.js" charset="GB2312"></script>
+	<script src="js/mui.min.js"></script>
+	
+
+	<script>
+		
+		FastClick.attach(document.body);
+	
+		var num1 = '',
+			num2 = '';
+		layui.use(['form', 'layedit', 'laydate'], function() {
+			
+
+			var form = layui.form,
+				layer = layui.layer,
+				laydate = layui.laydate;
+				
+			
+			//回填表单
+			var Id = $.getQueryString("bh");
+			var sf = $.getQueryString("users");
+			var duban = $.getQueryString("duban")
+		
+			
+			if(duban == "w") {
+				$(".nb-fixed-header h1").html("详情")
+							//未督办
+				$("#btn").hide()
+			} else {
+							//督办中
+							$("#hurryDo").click(function () {
+								
+								$.ajax({
+									headers:{token:localStorage.token},
+									type:"post",
+									url:updateCheckUserPressdo,
+									async:true,
+									data:{zgyj:$("#zgyj textarea").val(),hkyj:$("#fkyj textarea").val(),checkuserId:Id},
+									success:function (data){
+
+										if(data>0){
+											layer.msg("提交成功")
+										}else{
+											layer.msg("提交失败")
+										}
+									
+									}
+								});
+							})
+							
+							$("#dbjs").click(function () {
+					
+								$.ajax({
+									headers:{token:localStorage.token},
+									type:"get",
+									url:updateCheckUserNomal+Id,
+									async:true,
+									
+									success:function (data){
+									
+
+										if(data>0){
+//											layer.msg("提交成功");
+											window.location.href = "khdb.html?duban="+duban
+										}else{
+											layer.msg("提交失败")
+										}
+									}
+								});
+							})
+							
+							$("#cb").click(function () {
+								window.location.href = "cb.html?Id="+Id+"&sf="+sf+"&duban="+duban 
+							})
+							$("body").on("click",".layui-layer-btn,.layui-layer-setwin",function (){
+								$(".alert").fadeOut()
+							})
+							
+							
+			}
+			
+			var tokens = localStorage.token;
+			if(Id) {
+				
+				$.ajax({
+					url: checkUser + Id,
+					beforeSend: function(xhr) {
+						//                  $('.loading').show()
+						xhr.setRequestHeader("TOKEN", tokens);
+					},
+					success: function(data) {
+					
+					
+					
+						
+						//              	if(isEmpty(data.image)){
+						var imageUrl = data.image
+						
+						if(imageUrl != null){
+							
+							imageUrl = imageUrl.substring(0, imageUrl.length - 1);
+						//              	console.log(imageUrl);
+							var imgs = imageUrl.split("&");
+							for(var i = 0; i < imgs.length; i++) {
+								
+								
+								$("#uploaderFiles").append('<li class="weui-uploader__file"><img src="' + imgs[i] + '" style="width:100%;height:100%;zoom:1"></li>')
+							}
+						}
+							
+						if(duban == "w") {
+							
+							//未督办
+							$("#btn").hide();
+							if(data.zgyj == null){
+								$("#zgyj").hide();
+								
+							}
+							if(data.fkyj == null){
+								$("#fkyj").hide()
+							}
+						} else {
+							//督办中
+							if(data.zgyj !== null){
+								$("#zgyj").show()
+								
+							}else{
+								$("#fkyj").hide()
+							}
+							if(data.fkyj !== null){
+								$("#fkyj").show()
+							}else{
+								$("#fkyj").hide()
+							}
+						}
+
+						var editForm = data;
+						
+						if(editForm.aways == 1) {
+							editForm.aways = '是'
+						} else {
+							editForm.aways = '否'
+						}
+						if(editForm.partyMember == 1) {
+							editForm.partyMember = '是'
+						} else {
+							editForm.partyMember = '否'
+						}
+						if(editForm.tyws == 5) {
+							$("#score2 li:eq(0)").addClass("active")
+						} else if(editForm.tyws == 0) {
+							$("#score2 li:eq(1)").addClass("active")
+						} else if(editForm.tyws == -5){
+							$("#score2 li:eq(2)").addClass("active")
+						}
+						if(editForm.hlfl == 10) {
+							$("#score1 li:eq(0)").addClass("active");
+
+						} else if(editForm.hlfl == 0) {
+							$("#score1 li:eq(1)").addClass("active")
+						} else if(editForm.hlfl == -10){
+							$("#score1 li:eq(2)").addClass("active")
+						}
+						
+						
+						if(editForm.sfkt == 5) {
+							$("#score3 li:eq(0)").addClass("active");
+
+						} else if(editForm.sfkt == 0) {
+							
+							$("#score3 li:eq(1)").addClass("active")
+						} else if(editForm.sfkt == -5){
+							$("#score3 li:eq(2)").addClass("active")
+						}
+						
+						
+					
+					
+						$('#target').formEdit(editForm);
+						form.render('radio');
+						$(".nb-show-ranking-title2 dl dd").each(function() {
+							var that = $(this);
+							var text = that.find("input[type='hidden']").val();
+							that.find("span").html(text);
+						})
+						
+						if(editForm.sfkt == 0){
+							
+							
+							setTimeout(function () {
+								$(".layui-form-radio").eq(1).addClass("layui-form-radioed");
+								var html =  '<span style="position: absolute;width: 50%;height: 50%;transform: translate(-50%,-50%);left: 50%;top: 50%;background: #f15f2d;"></span>'
+								console.log($(".layui-form-radio").eq(0).width())
+								
+								$(".layui-form-radio").eq(1).children("i").addClass(" layui-anim-scaleSpring").html("&#xe643;");
+							
+//								.layui-anim::before{
+//						    		content: "";
+//						    		position: absolute;
+//						    		width: 50%;
+//						    		height: 50%;
+//						    		background: #f15f2d;
+//						    		transform: translate(-50%,-50%);
+//									left: 50%;
+//									top: 50%;    		
+//						    	}
+
+
+							
+							},100)
+						}
+					}
+				})
+
+			}
+			if(sf) {
+				$.ajax({
+					url: getDetailByUserId + sf,
+					beforeSend: function(xhr) {
+						$('.loading').show()
+						xhr.setRequestHeader("TOKEN", tokens);
+					},
+					success: function(res) {
+						
+						var editForm = res;
+					
+						if(editForm.aways == 1) {
+							editForm.aways = '是'
+						} else {
+							editForm.aways = '否'
+						}
+						if(editForm.partyMember == 1) {
+							editForm.partyMember = '是'
+						} else {
+							editForm.partyMember = '否'
+						}
+						$('#target').formEdit(editForm);
+						form.render('radio');
+
+						$(".nb-show-ranking-title2 dl dd").each(function() {
+							var that = $(this);
+							var text = that.find("input[type='hidden']").val();
+							that.find("span").html(text)
+						})
+					}
+				})
+			}
+		})
+		
+		
+	</script>
+	<!--后退功能-->
+	<script type="text/javascript">
+		mui.init();
+		var duban = $.getQueryString("duban")
+		mui.back = function () {
+			window.location.href = "khdb.html?duban="+duban
+		}
+		$("#back").click(function () {
+			window.location.href = "khdb.html?duban="+duban
+		})
+		
+		
+		
+		//放大
+		
+		$("body").on("click",".weui-uploader__file",function (e) {
+							var x = e.clientX;
+							var y = e.clientY;
+							
+							$("#imgBox").css({position:'fixed',left:x,top:y,zIndex:9999999}).
+							
+							children().css({width:"100%",height:"100%"}).
+							
+							attr("src",$(this).children("img").attr("src"));
+							
+
+							$("#imgBox").animate({width:window.innerWidth,height:window.innerHeight,top:0,left:0,backgroundSize:"100%"},"fast")
+
+						
+							 $("#imgBox").click(function () {
+							 	
+									$(this).animate({width:0,height:0,top:y,left:x},"fast")
+									$(this).unbind("click")
+								})
+		})	
+		
+	</script>
+
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title>督办</title>
+		<link rel="stylesheet" href="common/css/jquery-weui.min.css">
+		<link rel="stylesheet" href="common/lib/weui.min.css">
+		<!--<link rel="stylesheet" href="common/css/check.css">-->
+		<link rel="stylesheet" href="common/css/main.css">
+		<!--<link rel="stylesheet" href="common/layui/css/layui.css">-->
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<style>
+			
+			.qr_btn {
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				overflow: hidden;
+				top: 10px;
+				right: 10px;
+			}
+			
+			#btn button {
+				width: 30%;
+			}
+			
+			
+			.yourclass{
+				width: 100%;
+			}	
+			.alert{
+				top:178px !important;
+				display: none;
+			}
+			.weui-cell__bd{
+				position: relative;
+				padding-right: 12px;
+			}
+			.weui-cell__bd .fa{
+				position:absolute;top: 50%;transform: translateY(-50%);right: 0;
+				color: rgba(62, 147, 233, 1);
+			}
+			body{
+				position:fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				
+			}
+		</style>
+	</head>
+
+	<body ontouchstart class="nb-body" style="background:#e5e8e9">
+		<div class="nb-fixed-header">
+			<a href="javascript:;">
+				<i class="nb-icon">&#xe61d;</i>
+			</a>
+			<h1>重办</h1>
+		</div>
+
+		<div class="nb-form-group nb-form-group1 m-40">
+			<form id="target" class="layui-form">
+
+                <div class="nb-form-group-list weui-cells weui-cells_form" style="margin-top:0">
+					
+					<div id="地址" class="weui-cell">
+	                    <div class="weui-cell__hd">
+	                        <label for="" class="weui-label" style="color: #999;font-family: 黑体">整改意见</label>
+	                    </div>
+	                    <div class="weui-cell__bd">
+	                        <input id="zgyj" class="weui-input" type="text" value="" placeholder="" name="zgyj">
+	                    </div>
+	                </div>
+	              
+	                 
+	              <input type="hidden" name="checkuserId" id="checkuserId" value="" />
+                </div>
+			</form>
+			<div id="duban">	
+				<button id="add" style="color: #fff;" class="layui-btn layui-btn-normal">提交</button>				
+			</div>
+		</div>
+		<div class="mask-item"></div>
+		<div class="layui-layer layui-layer-dialog alert" id="layui-layer3" type="dialog" times="3" showtime="0" contype="string" style="z-index: 19891017; top: 236px; left: 50px;"><div class="layui-layer-title" style="cursor: move;">督办结束时间</div><div id="" class="layui-layer-content"><input type="text" class="layui-input" id="date" ata-toggle='date' placeholder="请输入结束时间" lay-key="2"></div><span class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a></span><div class="layui-layer-btn layui-layer-btn-"><a class="layui-layer-btn0">确认</a></div><span class="layui-layer-resize"></span></div>
+	</body>
+	<script src="common/lib/jquery-2.1.4.js"></script>
+
+	<script src="common/js/jquery-weui.js"></script>
+	<script src="common/js/jquery.cform.min.js"></script>
+	<script src="common/js/swiper.js"></script>
+
+	<script src="common/js/main.js"></script>
+	<script src="common/js/common.js"></script>
+	<script src="common/lib/qrcode.lib.min.js" charset="GB2312"></script>
+	<script src="common/lib/qrcode.js" charset="GB2312"></script>
+	
+	<script src="common/layui/layui.all.js"></script>
+	<script>
+		var timeArry = []
+		
+		var Id = $.getQueryString("Id");
+		var sf = $.getQueryString("sf");
+		var duban = $.getQueryString("duban");
+		$("#checkuserId").val(Id);
+		
+	$("#lastTime").datetimePicker({
+		title: "请选择结束时间",
+        min:formater(new Date())
+        
+      });
+      $(".nb-fixed-header a").on("click",function () {
+      	window.location.href = "wdb_detail.html?bh="+Id+"&users="+sf+"&duban="+duban
+      })
+      
+  
+//	$("#adress").picker({
+//		  title: "请选择您的手机",
+//		  cols: [
+//		    {
+//		      textAlign: 'center',
+//		      values: ['iPhone 4', 'iPhone 4S', 'iPhone 5', 'iPhone 5S', 'iPhone 6', 'iPhone 6 Plus', 'iPad 2', 'iPad Retina', 'iPad Air', 'iPad mini', 'iPad mini 2', 'iPad mini 3']
+//		    }
+//		  ]
+//		});
+
+	layui.use(['form', 'layedit', 'laydate'], function() {
+		
+		var form = layui.form,
+				layer = layui.layer,
+				laydate = layui.laydate;
+		$("#add").click(function () {
+			
+
+			
+
+			var  data = {
+				zgyj: $("#zgyj").val(),
+				checkuserId: $('#checkuserId').val()
+			}
+	
+			
+			$.ajax({
+			headers:{token:localStorage.token},
+			dataType:"json",
+			type:"post",
+			data:data,
+			url:updateCheckUserRedo,
+			success:function (data) {
+			
+				if(data>0){
+					layer.msg("提交成功")
+						return false
+					setTimeout(function () {
+						window.location.href = "khdb.html?duban="+duban 
+					},1000)
+					}else{
+					layer.msg("提交失败")
+				}
+			}
+			
+		});
+})
+	})
+
+
+
+function formater(d){
+	
+	
+	return (d.getFullYear()+"-"+(d.getMonth()+1)+"-"+(d.getDate()));
+}
+//		
+	</script>
+
+</html>
